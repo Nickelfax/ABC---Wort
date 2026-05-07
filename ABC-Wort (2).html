@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#4a90d9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ABC Start">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Start</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f4f8;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        /* === WORTANZEIGE === */
+        #wortAnzeige {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #2c3e50;
+        }
+
+        #wortAnzeige .platzhalter {
+            color: #bdc3c7;
+            font-size: 0.5em;
+            font-weight: normal;
+            letter-spacing: 0;
+        }
+
+        /* === BUTTONS === */
+        .btn-leiste {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn:active { transform: scale(0.96); }
+
+        .btn-blau { background: #3498db; color: white; }
+        .btn-blau:hover { background: #2980b9; }
+
+        .btn-gruen { background: #27ae60; color: white; }
+        .btn-gruen:hover { background: #229954; }
+
+        .btn-rot { background: #e74c3c; color: white; }
+        .btn-rot:hover { background: #c0392b; }
+
+        /* === TOGGLE BUTTONS === */
+        .toggle-leiste {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .toggle-btn {
+            padding: 8px 14px;
+            border: 2px solid #bdc3c7;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.aktiv {
+            background: #3498db;
+            border-color: #3498db;
+            color: white;
+        }
+
+        .toggle-btn:hover { border-color: #3498db; }
+
+        /* === BUCHSTABEN TASTEN === */
+        .tasten-bereich {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tasten-bereich h3 {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tasten-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .taste {
+            width: 52px;
+            height: 52px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.4em;
+            font-weight: bold;
+            transition: all 0.15s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .taste:active { transform: scale(0.92); }
+
+        /* Zahlen-Badge auf Taste */
+        .taste .zahl-badge {
+            display: none;
+            font-size: 0.35em;
+            font-weight: 600;
+            color: rgba(0,0,0,0.45);
+            line-height: 1;
+            margin-top: 1px;
+        }
+
+        .zeige-zahlen .zahl-badge {
+            display: block;
+        }
+
+        /* Bild-Badge */
+        .taste .bild-badge {
+            display: none;
+            font-size: 0.38em;
+            line-height: 1;
+            margin-top: 1px;
+        }
+
+        .zeige-bilder .bild-badge {
+            display: block;
+        }
+
+        /* Buchstaben-Taste Farben */
+        .taste-vokal { background: #ffeaa7; color: #2d3436; }
+        .taste-vokal:hover { background: #fdcb6e; }
+
+        .taste-konsonant { background: #dfe6e9; color: #2d3436; }
+        .taste-konsonant:hover { background: #b2bec3; }
+
+        .taste-umlaut { background: #a29bfe; color: white; }
+        .taste-umlaut:hover { background: #6c5ce7; }
+
+        .taste-doppel { background: #fd79a8; color: white; }
+        .taste-doppel:hover { background: #e84393; }
+
+        .taste-zahl { background: #55efc4; color: #2d3436; }
+        .taste-zahl:hover { background: #00b894; }
+
+        /* === ANLAUT BEREICH === */
+        #anlautBereich {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        #anlautBereich h3 {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #anlautGrid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .anlaut-taste {
+            padding: 6px 10px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .anlaut-taste:hover { border-color: #3498db; background: #ebf5fb; }
+        .anlaut-taste.ausgewaehlt { border-color: #3498db; background: #3498db; color: white; }
+
+        .anlaut-taste .anlaut-bild {
+            display: none;
+            font-size: 1.3em;
+        }
+
+        .zeige-bilder .anlaut-taste .anlaut-bild { display: block; }
+
+        /* === RESPONSIV === */
+        @media (max-width: 400px) {
+            .taste { width: 44px; height: 44px; font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Wortanzeige -->
+<div id="wortAnzeige">
+    <span class="platzhalter">Klicke auf Buchstaben ...</span>
+</div>
+
+<!-- Hauptbuttons -->
+<div class="btn-leiste">
+    <button class="btn btn-blau" onclick="sprecheWort()">🔊 Vorlesen</button>
+    <button class="btn btn-gruen" onclick="zufallsWort()">🎲 Zufallswort</button>
+    <button class="btn btn-rot" onclick="letztenLoeschen()">⌫ Zurück</button>
+    <button class="btn btn-rot" onclick="allesLoeschen()">🗑️ Alles</button>
+</div>
+
+<!-- Toggle-Buttons -->
+<div class="toggle-leiste">
+    <button class="toggle-btn" id="toggleGross" onclick="toggleGrossKlein()">Aa Groß/Klein</button>
+    <button class="toggle-btn aktiv" id="toggleAnlaut" onclick="toggleAnlaut()">Anlaut an</button>
+    <button class="toggle-btn" id="toggleBilder" onclick="toggleBilder()">🖼️ Bilder</button>
+    <button class="toggle-btn" id="toggleZahlen" onclick="toggleZahlen()">🔢 Zahlen</button>
+</div>
+
+<!-- Buchstaben A–Z -->
+<div class="tasten-bereich" id="bereichAZ">
+    <h3>Buchstaben A – Z + Umlaute</h3>
+    <div class="tasten-grid" id="gridAZ"></div>
+</div>
+
+<!-- Anlaut-Bereich -->
+<div id="anlautBereich">
+    <h3>Anlaut wählen</h3>
+    <div id="anlautGrid"></div>
+</div>
+
+<!-- Doppelbuchstaben -->
+<div class="tasten-bereich">
+    <h3>Doppelbuchstaben &amp; Laute</h3>
+    <div class="tasten-grid" id="gridDoppel"></div>
+</div>
+
+<!-- Zahlen -->
+<div class="tasten-bereich">
+    <h3>Zahlen</h3>
+    <div class="tasten-grid" id="gridZahlen"></div>
+</div>
+
+<script>
+// =============================================
+// DATEN
+// =============================================
+
+const buchstabenDaten = [
+    { buch: 'A', typ: 'vokal',     pos: 1,  audio: 'a.m4a', phonem: 'ph_a.m4a', bild: '🍎', anlaute: [{wort:'Apfel',bild:'🍎'},{wort:'Ameise',bild:'🐜'},{wort:'Auto',bild:'🚗'}] },
+    { buch: 'B', typ: 'konsonant', pos: 2,  audio: 'b.m4a', phonem: 'ph_b.m4a',  bild: '🐝', anlaute: [{wort:'Ball',bild:'⚽'},{wort:'Buch',bild:'📚'},{wort:'Bär',bild:'🐻'}] },
+    { buch: 'C', typ: 'konsonant', pos: 3,  audio: 'c.m4a', phonem: 'ph_c.m4a',  bild: '🎠', anlaute: [{wort:'Computer',bild:'💻'},{wort:'Clown',bild:'🤡'}] },
+    { buch: 'D', typ: 'konsonant', pos: 4,  audio: 'd.m4a', phonem: 'ph_d.m4a',  bild: '🐉', anlaute: [{wort:'Dackel',bild:'🐕'},{wort:'Drachen',bild:'🐉'},{wort:'Dose',bild:'🥫'}] },
+    { buch: 'E', typ: 'vokal',     pos: 5,  audio: 'e.m4a', phonem: 'ph_e.m4a',  bild: '🥚', anlaute: [{wort:'Ei',bild:'🥚'},{wort:'Ente',bild:'🦆'},{wort:'Elefant',bild:'🐘'}] },
+    { buch: 'F', typ: 'konsonant', pos: 6,  audio: 'f.m4a', phonem: 'ph_f.m4a',  bild: '🐟', anlaute: [{wort:'Fisch',bild:'🐟'},{wort:'Fuchs',bild:'🦊'},{wort:'Feuer',bild:'🔥'}] },
+    { buch: 'G', typ: 'konsonant', pos: 7,  audio: 'g.m4a', phonem: 'ph_g.m4a',  bild: '🌿', anlaute: [{wort:'Gans',bild:'🪿'},{wort:'Gitarre',bild:'🎸'},{wort:'Gabel',bild:'🍴'}] },
+    { buch: 'H', typ: 'konsonant', pos: 8,  audio: 'h.m4a', phonem: 'ph_h.m4a',  bild: '🏠', anlaute: [{wort:'Haus',bild:'🏠'},{wort:'Hund',bild:'🐕'},{wort:'Herz',bild:'❤️'}] },
+    { buch: 'I', typ: 'vokal',     pos: 9,  audio: 'i.m4a', phonem: 'ph_i.m4a',  bild: '🦔', anlaute: [{wort:'Igel',bild:'🦔'},{wort:'Insel',bild:'🏝️'}] },
+    { buch: 'J', typ: 'konsonant', pos: 10, audio: 'j.m4a', phonem: 'ph_j.m4a', bild: '🧥', anlaute: [{wort:'Jacke',bild:'🧥'},{wort:'Junge',bild:'👦'},{wort:'Joghurt',bild:'🥛'}] },
+    { buch: 'K', typ: 'konsonant', pos: 11, audio: 'k.m4a', phonem: 'ph_k.m4a', bild: '🐱', anlaute: [{wort:'Katze',bild:'🐱'},{wort:'Kuh',bild:'🐄'},{wort:'König',bild:'👑'}] },
+    { buch: 'L', typ: 'konsonant', pos: 12, audio: 'l.m4a', phonem: 'ph_l.m4a', bild: '🦁', anlaute: [{wort:'Löwe',bild:'🦁'},{wort:'Lampe',bild:'💡'},{wort:'Leiter',bild:'🪜'}] },
+    { buch: 'M', typ: 'konsonant', pos: 13, audio: 'm.m4a', phonem: 'ph_m.m4a', bild: '🌕', anlaute: [{wort:'Mond',bild:'🌕'},{wort:'Maus',bild:'🐭'},{wort:'Milch',bild:'🥛'}] },
+    { buch: 'N', typ: 'konsonant', pos: 14, audio: 'n.m4a', phonem: 'ph_n.m4a', bild: '🪺', anlaute: [{wort:'Nest',bild:'🪺'},{wort:'Nase',bild:'👃'},{wort:'Nadel',bild:'🪡'}] },
+    { buch: 'O', typ: 'vokal',     pos: 15, audio: 'o.m4a', phonem: 'ph_o.m4a', bild: '🍊', anlaute: [{wort:'Orange',bild:'🍊'},{wort:'Ohr',bild:'👂'},{wort:'Otter',bild:'🦦'}] },
+    { buch: 'P', typ: 'konsonant', pos: 16, audio: 'p.m4a', phonem: 'ph_p.m4a', bild: '🦜', anlaute: [{wort:'Papagei',bild:'🦜'},{wort:'Pferd',bild:'🐎'},{wort:'Pizza',bild:'🍕'}] },
+    { buch: 'Q', typ: 'konsonant', pos: 17, audio: 'q.m4a', phonem: 'ph_q.m4a', bild: '🔲', anlaute: [{wort:'Qualle',bild:'🪼'},{wort:'Quelle',bild:'💧'}] },
+    { buch: 'R', typ: 'konsonant', pos: 18, audio: 'r.m4a', phonem: 'ph_r.m4a', bild: '🌹', anlaute: [{wort:'Rose',bild:'🌹'},{wort:'Rakete',bild:'🚀'},{wort:'Regen',bild:'🌧️'}] },
+    { buch: 'S', typ: 'vokal',     pos: 19, audio: 's.m4a', phonem: 'ph_s.m4a', bild: '⭐', anlaute: [{wort:'Sonne',bild:'☀️'},{wort:'Schiff',bild:'🚢'},{wort:'Stern',bild:'⭐'}] },
+    { buch: 'T', typ: 'konsonant', pos: 20, audio: 't.m4a', phonem: 'ph_t.m4a', bild: '🐯', anlaute: [{wort:'Tiger',bild:'🐯'},{wort:'Tisch',bild:'🪑'},{wort:'Turm',bild:'🏰'}] },
+    { buch: 'U', typ: 'vokal',     pos: 21, audio: 'u.m4a', phonem: 'ph_u.m4a', bild: '⌚', anlaute: [{wort:'Uhr',bild:'⌚'},{wort:'Uhu',bild:'🦉'}] },
+    { buch: 'V', typ: 'konsonant', pos: 22, audio: 'v.m4a', phonem: 'ph_v.m4a', bild: '🚐', anlaute: [{wort:'Vogel',bild:'🐦'},{wort:'Vulkan',bild:'🌋'}] },
+    { buch: 'W', typ: 'konsonant', pos: 23, audio: 'w.m4a', phonem: 'ph_w.m4a', bild: '🐋', anlaute: [{wort:'Wal',bild:'🐋'},{wort:'Wolke',bild:'☁️'},{wort:'Wasser',bild:'💧'}] },
+    { buch: 'X', typ: 'konsonant', pos: 24, audio: 'x.m4a', phonem: 'ph_x.m4a', bild: '✖️', anlaute: [] },
+    { buch: 'Y', typ: 'vokal',     pos: 25, audio: 'y.m4a', phonem: 'ph_y.m4a', bild: '🧶', anlaute: [] },
+    { buch: 'Z', typ: 'konsonant', pos: 26, audio: 'z.m4a', phonem: 'ph_z.m4a', bild: '🧲', anlaute: [{wort:'Zug',bild:'🚂'},{wort:'Zebra',bild:'🦓'},{wort:'Zahn',bild:'🦷'}] },
+    { buch: 'Ä', typ: 'umlaut',    pos: null, audio: 'ae.m4a', phonem: 'ph_ae.m4a', bild: '🐻', anlaute: [{wort:'Ärger',bild:'😤'},{wort:'Äpfel',bild:'🍏'}] },
+    { buch: 'Ö', typ: 'umlaut',    pos: null, audio: 'oe.m4a', phonem: 'ph_oe.m4a', bild: '🌊', anlaute: [{wort:'Öl',bild:'🫙'},{wort:'Öfen',bild:'🔥'}] },
+    { buch: 'Ü', typ: 'umlaut',    pos: null, audio: 'ue.m4a', phonem: 'ph_ue.m4a', bild: '🥚', anlaute: [{wort:'Übung',bild:'💪'},{wort:'Üppig',bild:'🌸'}] },
+];
+
+const doppelBuchstaben = [
+    { text: 'SCH', typ: 'doppel' },
+    { text: 'CH',  typ: 'doppel' },
+    { text: 'CK',  typ: 'doppel' },
+    { text: 'NG',  typ: 'doppel' },
+    { text: 'SP',  typ: 'doppel' },
+    { text: 'ST',  typ: 'doppel' },
+    { text: 'PF',  typ: 'doppel' },
+    { text: 'QU',  typ: 'doppel' },
+    { text: 'EI',  typ: 'doppel' },
+    { text: 'EU',  typ: 'doppel' },
+    { text: 'ÄU',  typ: 'doppel' },
+    { text: 'AU',  typ: 'doppel' },
+    { text: 'IE',  typ: 'doppel' },
+    { text: 'ß',   typ: 'doppel' },
+];
+
+const zahlenDaten = [
+    {zahl:'1',wort:'eins'},{zahl:'2',wort:'zwei'},{zahl:'3',wort:'drei'},
+    {zahl:'4',wort:'vier'},{zahl:'5',wort:'fünf'},{zahl:'6',wort:'sechs'},
+    {zahl:'7',wort:'sieben'},{zahl:'8',wort:'acht'},{zahl:'9',wort:'neun'},
+    {zahl:'10',wort:'zehn'},{zahl:'11',wort:'elf'},{zahl:'12',wort:'zwölf'},
+    {zahl:'13',wort:'dreizehn'},{zahl:'14',wort:'vierzehn'},{zahl:'15',wort:'fünfzehn'},
+    {zahl:'16',wort:'sechzehn'},{zahl:'17',wort:'siebzehn'},{zahl:'18',wort:'achtzehn'},
+    {zahl:'19',wort:'neunzehn'},{zahl:'20',wort:'zwanzig'},
+];
+
+const woerterListe = [
+    'MAMA','PAPA','KIND','HAUS','BAUM','HUND','KATZE','MAUS',
+    'BUCH','BALL','SONNE','MOND','STERN','AUTO','ZUG','BUS',
+    'APFEL','BROT','MILCH','WASSER','FISCH','BLUME','VOGEL','SCHULE',
+    'TISCH','STUHL','BETT','TÜR','FENSTER','GARTEN','STRASSE'
+];
+
+// =============================================
+// ZUSTAND
+// =============================================
+let wort = [];
+let grossSchreibung = true;
+let zeigeBilder = false;
+let zeigeZahlen = false;
+let gewaehlterAnlaut = null;
+let zeigeAnlaut = true;
+
+// =============================================
+// INIT
+// =============================================
+function init() {
+    erstelleAZGrid();
+    erstelleDoppelGrid();
+    erstelleZahlenGrid();
+}
+
+function erstelleAZGrid() {
+    const grid = document.getElementById('gridAZ');
+    grid.innerHTML = '';
+    buchstabenDaten.forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = `taste taste-${d.typ}`;
+        btn.dataset.buch = d.buch;
+        btn.dataset.pos = d.pos || '';
+        btn.dataset.bild = d.bild;
+        btn.innerHTML = `
+            <span class="taste-text">${d.buch}</span>
+            <span class="bild-badge">${d.bild}</span>
+            ${d.pos ? `<span class="zahl-badge">${d.pos}</span>` : ''}
+        `;
+        btn.onclick = () => buchstabeTippen(d.buch, d);
+        grid.appendChild(btn);
+    });
+}
+
+function erstelleDoppelGrid() {
+    const grid = document.getElementById('gridDoppel');
+    grid.innerHTML = '';
+    doppelBuchstaben.forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = 'taste taste-doppel';
+        btn.style.width = 'auto';
+        btn.style.padding = '0 10px';
+        btn.innerHTML = `<span class="taste-text">${d.text}</span>`;
+        btn.onclick = () => buchstabeTippen(d.text, null);
+        grid.appendChild(btn);
+    });
+}
+
+function erstelleZahlenGrid() {
+    const grid = document.getElementById('gridZahlen');
+    grid.innerHTML = '';
+    zahlenDaten.forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = 'taste taste-zahl';
+        btn.innerHTML = `<span class="taste-text">${d.zahl}</span>`;
+        btn.onclick = () => buchstabeTippen(d.zahl, null);
+        grid.appendChild(btn);
+    });
+}
+
+// =============================================
+// AKTIONEN
+// =============================================
+function buchstabeTippen(zeichen, daten) {
+    // Anlaut-Anzeige (nur wenn aktiv und Anlaute vorhanden)
+    if (zeigeAnlaut && daten && daten.anlaute && daten.anlaute.length > 0) {
+        zeigeAnlaute(daten);
+    } else {
+        versteckeAnlaute();
+    }
+
+    const buchstabe = grossSchreibung ? zeichen : zeichen.toLowerCase();
+    wort.push(buchstabe);
+    aktualisiereAnzeige();
+
+    // Buchstaben/Laut sofort abspielen (eigene Aufnahme)
+    if (daten && daten.audio) {
+        const datei = zeigeAnlaut ? daten.audio : (daten.phonem || daten.audio);
+        spieleAudio(datei);
+    } else {
+        sprecheText(zeichen);
+    }
+}
+
+function letztenLoeschen() {
+    if (wort.length === 0) return;
+    wort.pop();
+    aktualisiereAnzeige();
+}
+
+function zeigeAnlaute(daten) {
+    const bereich = document.getElementById('anlautBereich');
+    const grid = document.getElementById('anlautGrid');
+    bereich.style.display = 'block';
+    grid.innerHTML = '';
+    daten.anlaute.forEach(a => {
+        const btn = document.createElement('button');
+        btn.className = 'anlaut-taste';
+        btn.innerHTML = `<span class="anlaut-bild">${a.bild}</span>${a.wort}`;
+        btn.onclick = () => sprecheText(a.wort);
+        grid.appendChild(btn);
+    });
+}
+
+function versteckeAnlaute() {
+    document.getElementById('anlautBereich').style.display = 'none';
+}
+
+function aktualisiereAnzeige() {
+    const anzeige = document.getElementById('wortAnzeige');
+    if (wort.length === 0) {
+        anzeige.innerHTML = '<span class="platzhalter">Klicke auf Buchstaben ...</span>';
+    } else {
+        anzeige.textContent = wort.join('');
+    }
+}
+
+function allesLoeschen() {
+    wort = [];
+    aktualisiereAnzeige();
+    versteckeAnlaute();
+}
+
+function sprecheWort() {
+    if (wort.length === 0) return;
+    sprecheText(wort.join(''));
+}
+
+function spieleAudio(datei) {
+    const audio = new Audio('audio/' + datei);
+    audio.play().catch(() => {
+        // Fallback auf Sprachausgabe wenn Datei nicht gefunden
+        sprecheText(datei.replace('.m4a','').replace('ae','ä').replace('oe','ö').replace('ue','ü'));
+    });
+}
+
+function sprecheText(text) {
+    // Sprachausgabe - zuverlässige Implementierung
+    if (!('speechSynthesis' in window)) {
+        alert('Sprachausgabe wird von diesem Browser nicht unterstützt.');
+        return;
+    }
+    
+    // Stoppe laufende Ausgabe
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.85;
+    utterance.pitch = 1.1;
+    utterance.volume = 1.0;
+    
+    // Wähle deutsche Stimme – möglichst männlich
+    const stimmen = window.speechSynthesis.getVoices();
+    const männlich = stimmen.find(s => s.lang.startsWith('de') && /male|mann|stefan|markus|hans|georg|felix/i.test(s.name));
+    const deutsch  = stimmen.find(s => s.lang.startsWith('de'));
+    if (männlich) utterance.voice = männlich;
+    else if (deutsch) utterance.voice = deutsch;
+    
+    window.speechSynthesis.speak(utterance);
+}
+
+function zufallsWort() {
+    const zufalls = woerterListe[Math.floor(Math.random() * woerterListe.length)];
+    wort = grossSchreibung
+        ? zufalls.split('')
+        : zufalls.toLowerCase().split('');
+    aktualisiereAnzeige();
+    versteckeAnlaute();
+    setTimeout(() => sprecheText(zufalls), 200);
+}
+
+// =============================================
+// TOGGLES
+// =============================================
+function toggleGrossKlein() {
+    grossSchreibung = !grossSchreibung;
+    const btn = document.getElementById('toggleGross');
+    btn.classList.toggle('aktiv', !grossSchreibung);
+    btn.textContent = grossSchreibung ? 'Aa Groß/Klein' : 'aa klein';
+    
+    // Tasten aktualisieren
+    document.querySelectorAll('.taste-text').forEach(el => {
+        const taste = el.closest('.taste');
+        if (taste && taste.dataset.buch) {
+            el.textContent = grossSchreibung
+                ? taste.dataset.buch
+                : taste.dataset.buch.toLowerCase();
+        }
+    });
+    
+    // Wort umwandeln
+    if (wort.length > 0) {
+        wort = grossSchreibung
+            ? wort.map(b => b.toUpperCase())
+            : wort.map(b => b.toLowerCase());
+        aktualisiereAnzeige();
+    }
+}
+
+function toggleAnlaut() {
+    zeigeAnlaut = !zeigeAnlaut;
+    const btn = document.getElementById('toggleAnlaut');
+    btn.classList.toggle('aktiv', zeigeAnlaut);
+    btn.textContent = zeigeAnlaut ? 'Anlaut an' : 'Phonem';
+    if (!zeigeAnlaut) versteckeAnlaute();
+}
+
+function toggleBilder() {
+    zeigeBilder = !zeigeBilder;
+    const btn = document.getElementById('toggleBilder');
+    btn.classList.toggle('aktiv', zeigeBilder);
+    
+    // Auf allen Tasten-Grids anwenden
+    document.getElementById('gridAZ').classList.toggle('zeige-bilder', zeigeBilder);
+    document.getElementById('anlautGrid').classList.toggle('zeige-bilder', zeigeBilder);
+}
+
+function toggleZahlen() {
+    zeigeZahlen = !zeigeZahlen;
+    const btn = document.getElementById('toggleZahlen');
+    btn.classList.toggle('aktiv', zeigeZahlen);
+    document.getElementById('gridAZ').classList.toggle('zeige-zahlen', zeigeZahlen);
+}
+
+// Stimmen laden (Chrome braucht das)
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {};
+}
+
+// Start
+init();
+</script>
+</body>
+</html>
