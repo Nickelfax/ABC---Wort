@@ -353,6 +353,127 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
+
+        /* ========== MOBILE OPTIMIERUNG ========== */
+        @media (max-width: 600px) {
+            body {
+                padding: 8px;
+                padding-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 3px;
+            }
+
+            .subtitle {
+                font-size: 0.75rem;
+                margin-bottom: 10px;
+            }
+
+            .word-display {
+                min-height: 60px;
+                font-size: 1.6rem;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-width: 3px;
+                border-radius: 14px;
+            }
+
+            .word-display.empty {
+                font-size: 0.85rem;
+            }
+
+            .char-block {
+                padding: 3px 8px;
+                font-size: 1.4rem;
+            }
+
+            .controls {
+                gap: 6px;
+                margin-bottom: 10px;
+            }
+
+            button {
+                padding: 9px 12px;
+                font-size: 0.82rem;
+                border-radius: 10px;
+            }
+
+            .keyboard-container {
+                padding: 10px 8px;
+                border-radius: 14px;
+            }
+
+            .keyboard-section {
+                margin-bottom: 10px;
+            }
+
+            .section-title {
+                font-size: 0.75rem;
+                margin-bottom: 5px;
+            }
+
+            .keyboard-grid {
+                grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+                gap: 5px;
+            }
+
+            .key {
+                padding: 10px 2px;
+                font-size: 1.2rem;
+                border-radius: 8px;
+                border-width: 2px;
+                min-height: 44px;
+            }
+
+            .key.emoji-mode {
+                padding: 6px 2px;
+                font-size: 1.4rem;
+            }
+
+            .key.emoji-mode .emoji-label {
+                font-size: 0.55rem;
+            }
+
+            .case-toggle {
+                margin-bottom: 8px;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            .case-toggle span {
+                font-size: 0.72rem;
+            }
+
+            .modal-content {
+                padding: 15px;
+                border-radius: 12px;
+                max-height: 70vh;
+            }
+
+            .toast {
+                font-size: 0.82rem;
+                padding: 10px 18px;
+                bottom: 16px;
+                white-space: normal;
+                max-width: 85vw;
+                text-align: center;
+            }
+        }
+
+        /* Tastatur bleibt beim Tippen sichtbar */
+        @media (max-width: 600px) and (max-height: 500px) {
+            .word-display {
+                min-height: 40px;
+                font-size: 1.2rem;
+                margin-bottom: 6px;
+            }
+            .controls {
+                margin-bottom: 6px;
+            }
+            h1, .subtitle { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -914,6 +1035,40 @@ self.addEventListener('fetch', event => {
   const swUrl = URL.createObjectURL(blob);
   navigator.serviceWorker.register(swUrl).catch(e => console.log('SW reg failed:', e));
 }
+</script>
+
+
+<script>
+/* Scroll Wort-Anzeige ins Sichtfeld wenn Tastatur aufgeht */
+(function() {
+    var lastHeight = window.innerHeight;
+    window.addEventListener('resize', function() {
+        var newHeight = window.innerHeight;
+        if (newHeight < lastHeight - 100) {
+            // Tastatur wurde geöffnet
+            setTimeout(function() {
+                var display = document.getElementById('wordDisplay');
+                if (display) {
+                    display.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+        lastHeight = newHeight;
+    });
+
+    // Touch auf Tasten: Word-Display kurz aufblinken lassen
+    document.addEventListener('DOMContentLoaded', function() {
+        var keys = document.querySelectorAll('.key');
+        keys.forEach(function(key) {
+            key.addEventListener('touchstart', function() {
+                var display = document.getElementById('wordDisplay');
+                if (display && window.innerWidth <= 600) {
+                    display.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, { passive: true });
+        });
+    });
+})();
 </script>
 
 </body>
