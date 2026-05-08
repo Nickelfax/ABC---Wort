@@ -921,7 +921,10 @@
             document.getElementById('anlautToggle').addEventListener('change', function() {
                 document.getElementById('anlautLabel').textContent = this.checked ? 'an' : 'aus';
             });
-        });
+        });document.getElementById('colorToggle').addEventListener('change', function() {
+    document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
+    document.getElementById('colorLabel').textContent = this.checked ? 'an' : 'aus';
+});
 
         function speakWord() {
             const wordStr = currentWord.join('');
