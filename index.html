@@ -1020,7 +1020,7 @@
                 btn.textContent = i;
                 btn.onclick = () => {
                     currentWord.push(String(i));
-                    updateDisplay();
+                    updateDisplay();speakCharTTS(Sring(i));
                 };
                 grid.appendChild(btn);
             }const spendenBtn = document.createElement('div');
