@@ -842,7 +842,12 @@
 
         /* TTS-Fallback */
         function speakCharTTS(char) {
-            const spokenText = vokalMap[char] || konsonantMap[char] || char;
+            const zahlenMap = {
+                '0': 'null', '1': 'eins', '2': 'zwei', '3': 'drei',
+                '4': 'vier', '5': 'fünf', '6': 'sechs', '7': 'sieben',
+                '8': 'acht', '9': 'neun'
+            };
+            const spokenText = zahlenMap[char] || vokalMap[char] || konsonantMap[char] || char;
             const isVokal = char in vokalMap;
             const utterance = new SpeechSynthesisUtterance(spokenText);
             utterance.lang = 'de-DE';
@@ -850,6 +855,17 @@
             utterance.pitch = 1.1;
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(utterance);
+        }
+        function speakCharWithKey(key) {
+            window.speechSynthesis.cancel();
+            const useAnlaut = document.getElementById('anlautToggle').checked;
+            const data = useAnlaut ? audioData : audioDataWord;
+            const src = data[key] || audioData[key];
+            if (src) {
+                const audio = new Audio(src);
+                audio.play().catch(() => {});
+            }
+        }
         }
 
         function speakCharWithKey(key) {
