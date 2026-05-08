@@ -855,16 +855,7 @@
             utterance.pitch = 1.1;
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(utterance);
-        }
-        function speakCharWithKey(key) {
-            window.speechSynthesis.cancel();
-            const useAnlaut = document.getElementById('anlautToggle').checked;
-            const data = useAnlaut ? audioData : audioDataWord;
-            const src = data[key] || audioData[key];
-            if (src) {
-                const audio = new Audio(src);
-                audio.play().catch(() => {});
-            }
+        
         }
         }
 
