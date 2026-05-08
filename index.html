@@ -1040,6 +1040,33 @@
             spendenBtn.textContent = '☕';
             spendenBtn.onclick = () => window.open('https://ko-fi.com/nickelfax', '_blank');
             grid.appendChild(spendenBtn);
+        }function renderColors() {
+            const grid = document.getElementById('colorGrid');
+            grid.innerHTML = '';
+            const colors = [
+                { emoji: '🔴', word: 'rot' },
+                { emoji: '🟠', word: 'orange' },
+                { emoji: '🟡', word: 'gelb' },
+                { emoji: '🟢', word: 'grün' },
+                { emoji: '🔵', word: 'blau' },
+                { emoji: '🟣', word: 'lila' },
+                { emoji: '⚫', word: 'schwarz' },
+                { emoji: '⚪', word: 'weiß' },
+                { emoji: '🟤', word: 'braun' },
+                { emoji: '🩷', word: 'rosa' },
+                { emoji: '🩶', word: 'grau' },
+            ];
+            colors.forEach(item => {
+                const btn = document.createElement('div');
+                btn.className = 'key zahl';
+                btn.textContent = item.emoji + ' ' + item.word;
+                btn.onclick = () => {
+                    currentWord.push(item.word);
+                    updateDisplay();
+                    speakCharTTS(item.word);
+                };
+                grid.appendChild(btn);
+            });
         }
 
 
