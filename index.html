@@ -1213,7 +1213,7 @@ function diktatRender() {
                 const klick = t[i]!==b ? `onclick="diktatLoeschen(${i})"` : '';
                 return `<div class="char-block" style="color:${farbe}" ${klick}>${diktatEingabe[i]}</div>`;
             }
-            return `<div class="char-block" style="color:#ccc">&nbsp;</div>`;
+            return ``;
         }
         if (diktatModus === 'striche') {
             if (i < t.length) {
