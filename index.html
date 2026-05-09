@@ -494,18 +494,25 @@
 </head>
 <body>
     <p class="subtitle">Lerne Buchstaben, Wörter und Laute!</p>
-
 <!-- Diktatspiel -->
 <div id="diktatBereich" class="diktat-bereich">
-    ... (der Block von oben)
-</div>
-
-<div id="wordDisplay" class="word-display empty">
-    Klicke auf Buchstaben, um ein Wort zu bauen
-</div>
-
-    <div id="wordDisplay" class="word-display empty">
-        Klicke auf Buchstaben, um ein Wort zu bauen
+    <div class="diktat-score">
+        <span>Richtig: <strong id="diktatRichtig">0</strong></span>
+        <span>Falsch: <strong id="diktatFalsch">0</strong></span>
+    </div>
+    <div class="diktat-modus-zeile">
+        <button class="diktat-modus-btn aktiv" onclick="diktatSetModus('hilfe',this)">Mit Buchstaben</button>
+        <button class="diktat-modus-btn" onclick="diktatSetModus('striche',this)">Nur Striche</button>
+        <button class="diktat-modus-btn" onclick="diktatSetModus('blind',this)">Blind</button>
+    </div>
+    <div class="diktat-buchstaben" id="diktatAnzeige"></div>
+    <input id="diktatInput" type="text" placeholder="Tippe hier…"
+           autocomplete="off" autocorrect="off" spellcheck="false" />
+    <div class="diktat-status" id="diktatStatus">Hör zu und tippe das Wort</div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-speak" onclick="diktatNeuesWort()">🎲 Neues Wort</button>
+        <button class="btn-speak" onclick="diktatNochmal()">🔊 Nochmal hören</button>
+    </div>
     </div>
 
     <div class="controls">
