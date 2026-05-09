@@ -1204,21 +1204,31 @@ function diktatRender() {
     display.innerHTML = ziel.split('').map((b, i) => {
         if (diktatModus === 'blind') {
             if (i < t.length) {
-                return `<div class="char-block" style="color:${t[i]===b?'var(--success)':'var(--danger)'}">${diktatEingabe[i]}</div>`;
+                const farbe = t[i]===b ? 'var(--success)' : 'var(--danger)';
+                const klick = t[i]!==b ? `onclick="diktatLoeschen(${i})"` : '';
+                return `<div class="char-block" style="color:${farbe}" ${klick}>${diktatEingabe[i]}</div>`;
             }
             return `<div class="char-block" style="color:#ccc">&nbsp;</div>`;
         }
         if (diktatModus === 'striche') {
             if (i < t.length) {
-                return `<div class="char-block" style="color:${t[i]===b?'var(--success)':'var(--danger)'}">${diktatEingabe[i]}</div>`;
+                const farbe = t[i]===b ? 'var(--success)' : 'var(--danger)';
+                const klick = t[i]!==b ? `onclick="diktatLoeschen(${i})"` : '';
+                return `<div class="char-block" style="color:${farbe}" ${klick}>${diktatEingabe[i]}</div>`;
             }
             return `<div class="char-block" style="color:#ccc">_</div>`;
         }
         if (i < t.length) {
-            return `<div class="char-block" style="color:${t[i]===b?'var(--success)':'var(--danger)'}">${diktatEingabe[i]}</div>`;
+            const farbe = t[i]===b ? 'var(--success)' : 'var(--danger)';
+            const klick = t[i]!==b ? `onclick="diktatLoeschen(${i})"` : '';
+            return `<div class="char-block" style="color:${farbe}" ${klick}>${diktatEingabe[i]}</div>`;
         }
         return `<div class="char-block" style="color:#bdc3c7">${diktatAktuell[i]}</div>`;
     }).join('');
+}
+function diktatLoeschen(ab) {
+    diktatEingabe = diktatEingabe.substring(0, ab);
+    diktatRender();
 }
 function diktatAddChar(char) {
     if (diktatGesperrt) return;
