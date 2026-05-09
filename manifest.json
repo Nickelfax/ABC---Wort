@@ -1,0 +1,16 @@
+{
+  "name": "ABC-Wort",
+  "short_name": "ABC",
+  "description": "Lerne Buchstaben, Wörter und Laute",
+  "start_url": "/ABC-Wort/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90d9",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
