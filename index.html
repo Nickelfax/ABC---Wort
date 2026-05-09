@@ -741,23 +741,28 @@
 
         /* ── Anzeige aktualisieren ─────────────────────────── */
         function updateDisplay() {
-            const display = document.getElementById('wordDisplay');
-            display.innerHTML = '';
+    const display = document.getElementById('wordDisplay');
+    display.innerHTML = '';
 
-            if (currentWord.length === 0) {
-                display.classList.add('empty');
-                display.textContent = 'Klicke auf Buchstaben, um ein Wort zu bauen';
-                return;
-            }
+    if (diktatAktiv) {
+        diktatRender();
+        return;
+    }
 
-            display.classList.remove('empty');
-            currentWord.forEach((char, index) => {
-                const span = document.createElement('div');
-                span.className = 'char-block';
-                span.textContent = char;
-                span.onclick = () => removeChar(index);
-                display.appendChild(span);
-            });
+    if (currentWord.length === 0) {
+        display.classList.add('empty');
+        display.textContent = 'Klicke auf Buchstaben, um ein Wort zu bauen';
+        return;
+    }
+
+    display.classList.remove('empty');
+    currentWord.forEach((char, index) => {
+        const span = document.createElement('div');
+        span.className = 'char-block';
+        span.textContent = char;
+        span.onclick = () => removeChar(index);
+        display.appendChild(span);
+    });
         }
 
         /* ── Audio-Daten (eigene Aufnahmen) ──────────────── */
