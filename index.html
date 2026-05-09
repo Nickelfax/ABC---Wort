@@ -1242,6 +1242,7 @@ function diktatAddChar(char) {
     const naechsterIdx = diktatEingabe.length;
     if (naechsterIdx >= ziel.length) return;
     diktatEingabe += char;
+    speakChar(char);
     const letzterFalsch = char.toLowerCase() !== ziel[naechsterIdx];
     if (letzterFalsch) {
         diktatHatFehler = true;
