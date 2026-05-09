@@ -704,14 +704,20 @@
                     btn.textContent = char;
                 }
 
-                // Klick-Handler
-                if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
-                    btn.onclick = () => { currentWord.push(char); updateDisplay(); speakCharWithKey('r2'); };
-                } else if (upperChar === 'R') {
-                    btn.onclick = () => { currentWord.push(char); updateDisplay(); speakCharWithKey('r1'); };
-                } else {
-                    btn.onclick = () => addChar(upperChar === 'ß' ? 'ß' : char);
-                }
+               // Klick-Handler
+if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
+    btn.onclick = () => {
+        if (diktatAktiv) { diktatAddChar(char); return; }
+        currentWord.push(char); updateDisplay(); speakCharWithKey('r2');
+    };
+} else if (upperChar === 'R') {
+    btn.onclick = () => {
+        if (diktatAktiv) { diktatAddChar(char); return; }
+        currentWord.push(char); updateDisplay(); speakCharWithKey('r1');
+    };
+} else {
+    btn.onclick = () => addChar(upperChar === 'ß' ? 'ß' : char);
+}
 
                 container.appendChild(btn);
             });
