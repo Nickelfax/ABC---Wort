@@ -1180,7 +1180,6 @@ function diktatSprechen(text) {
     u.rate = 0.85;
     window.speechSynthesis.speak(u);
 }
-
 function diktatRender(tip) {
     const ziel = diktatAktuell.toLowerCase();
     const t = tip.toLowerCase();
@@ -1191,55 +1190,8 @@ function diktatRender(tip) {
             }
             return `<span class="diktat-buchstabe">&nbsp;</span>`;
         }
-        if (diktatModus === 'striche') {
-            if (i < t.length) {
-                return `<span class="diktat-buchstabe ${t[i]===b?'richtig':'falsch'}">${tip[i]}</span>`;
-            }
-            return `<span class="diktat-buchstabe">_</span>`;
-        }
-        if (i < t.length) {
-            return `<span class="diktat-buchstabe ${t[i]===b?'richtig':'falsch'}">${tip[i]}</span>`;
-        }
-        return `<span class="diktat-buchstabe">${diktatAktuell[i]}</span>`;
-    }).join('');
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('diktatInput').addEventListener('input', function() {
-        if (diktatGesperrt || !diktatAktuell) return;
-        const tip  = this.value;
-        const ziel = diktatAktuell.toLowerCase();
-        diktatRender(tip);
 
-        const li = tip.length - 1;
-        if (li >= 0 && tip[li].toLowerCase() !== (ziel[li] || '')) {
-            diktatHatFehler = true;
-            if (!diktatBuzzerGespielt) {
-                diktatBuzzerGespielt = true;
-                diktatBuzzer();
-                setTimeout(() => { diktatBuzzerGespielt = false; }, 600);
-            }
-        }
-
-        if (tip.toLowerCase() === ziel) {
-            diktatGesperrt = true;
-            this.disabled = true;
-            if (!diktatHatFehler) {
-                diktatRichtig++;
-                document.getElementById('diktatRichtig').textContent = diktatRichtig;
-                document.getElementById('diktatStatus').textContent = 'Richtig! 🎉';
-            } else {
-                diktatFalsch++;
-                document.getElementById('diktatFalsch').textContent = diktatFalsch;
-                document.getElementById('diktatStatus').textContent = 'Richtig — aber mit Korrekturen.';
-            }
-            diktatFanfare();
-            setTimeout(diktatNeuesWort, 2400);
-        } else {
-            document.getElementById('diktatStatus').textContent =
-                tip.length < ziel.length ? 'Weiter tippen…' : 'Noch nicht ganz…';
-        }
-    });
 });
 
 function diktatTrompete(freq, startTime, dauer, vol) {
