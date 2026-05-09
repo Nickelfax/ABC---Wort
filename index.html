@@ -1110,6 +1110,160 @@
         }
 
         /* ── Start ─────────────────────────────────────────── */
+        /* ── Diktatspiel ─────────────────────────────────── */
+let diktatAktuell = '';
+let diktatGesperrt = false;
+let diktatHatFehler = false;
+let diktatBuzzerGespielt = false;
+let diktatModus = 'hilfe';
+let diktatRichtig = 0;
+let diktatFalsch = 0;
+let diktatAktiv = false;
+const diktatCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function diktatToggle() {
+    diktatAktiv = !diktatAktiv;
+    document.getElementById('diktatBereich').classList.toggle('aktiv', diktatAktiv);
+    if (diktatAktiv) diktatNeuesWort();
+}
+
+function diktatSetModus(m, btn) {
+    diktatModus = m;
+    document.querySelectorAll('.diktat-modus-btn').forEach(b => b.classList.remove('aktiv'));
+    btn.classList.add('aktiv');
+    diktatRender(document.getElementById('diktatInput').value);
+}
+
+function diktatNeuesWort() {
+    diktatAktuell = wordList[Math.floor(Math.random() * wordList.length)];
+    const inp = document.getElementById('diktatInput');
+    inp.value = '';
+    inp.disabled = false;
+    diktatGesperrt = false;
+    diktatHatFehler = false;
+    diktatBuzzerGespielt = false;
+    diktatRender('');
+    document.getElementById('diktatStatus').textContent = 'Hör zu und tippe das Wort';
+    diktatSprechen(diktatAktuell);
+    inp.focus();
+}
+
+function diktatNochmal() {
+    if (diktatAktuell) diktatSprechen(diktatAktuell);
+}
+
+function diktatSprechen(text) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'de-DE';
+    u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+}
+
+function diktatRender(tip) {
+    const ziel = diktatAktuell.toLowerCase();
+    const t = tip.toLowerCase();
+    document.getElementById('diktatAnzeige').innerHTML = ziel.split('').map((b, i) => {
+        if (diktatModus === 'blind') {
+            if (i < t.length) {
+                return `<span class="diktat-buchstabe ${t[i]===b?'richtig':'falsch'}">${tip[i]}</span>`;
+            }
+            return `<span class="diktat-buchstabe">&nbsp;</span>`;
+        }
+        if (diktatModus === 'striche') {
+            if (i < t.length) {
+                return `<span class="diktat-buchstabe ${t[i]===b?'richtig':'falsch'}">${tip[i]}</span>`;
+            }
+            return `<span class="diktat-buchstabe">_</span>`;
+        }
+        if (i < t.length) {
+            return `<span class="diktat-buchstabe ${t[i]===b?'richtig':'falsch'}">${tip[i]}</span>`;
+        }
+        return `<span class="diktat-buchstabe">${diktatAktuell[i]}</span>`;
+    }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('diktatInput').addEventListener('input', function() {
+        if (diktatGesperrt || !diktatAktuell) return;
+        const tip  = this.value;
+        const ziel = diktatAktuell.toLowerCase();
+        diktatRender(tip);
+
+        const li = tip.length - 1;
+        if (li >= 0 && tip[li].toLowerCase() !== (ziel[li] || '')) {
+            diktatHatFehler = true;
+            if (!diktatBuzzerGespielt) {
+                diktatBuzzerGespielt = true;
+                diktatBuzzer();
+                setTimeout(() => { diktatBuzzerGespielt = false; }, 600);
+            }
+        }
+
+        if (tip.toLowerCase() === ziel) {
+            diktatGesperrt = true;
+            this.disabled = true;
+            if (!diktatHatFehler) {
+                diktatRichtig++;
+                document.getElementById('diktatRichtig').textContent = diktatRichtig;
+                document.getElementById('diktatStatus').textContent = 'Richtig! 🎉';
+            } else {
+                diktatFalsch++;
+                document.getElementById('diktatFalsch').textContent = diktatFalsch;
+                document.getElementById('diktatStatus').textContent = 'Richtig — aber mit Korrekturen.';
+            }
+            diktatFanfare();
+            setTimeout(diktatNeuesWort, 2400);
+        } else {
+            document.getElementById('diktatStatus').textContent =
+                tip.length < ziel.length ? 'Weiter tippen…' : 'Noch nicht ganz…';
+        }
+    });
+});
+
+function diktatTrompete(freq, startTime, dauer, vol) {
+    const o1 = diktatCtx.createOscillator();
+    const o2 = diktatCtx.createOscillator();
+    const o3 = diktatCtx.createOscillator();
+    const gain = diktatCtx.createGain();
+    o1.type = 'sawtooth'; o1.frequency.value = freq;
+    o2.type = 'sawtooth'; o2.frequency.value = freq * 2.01;
+    o3.type = 'square';   o3.frequency.value = freq * 0.5;
+    const g1 = diktatCtx.createGain(); g1.gain.value = 0.6;
+    const g2 = diktatCtx.createGain(); g2.gain.value = 0.25;
+    const g3 = diktatCtx.createGain(); g3.gain.value = 0.1;
+    const hi = diktatCtx.createBiquadFilter(); hi.type = 'highpass'; hi.frequency.value = 300;
+    const lo = diktatCtx.createBiquadFilter(); lo.type = 'lowpass';  lo.frequency.value = 2800;
+    o1.connect(g1); g1.connect(hi);
+    o2.connect(g2); g2.connect(hi);
+    o3.connect(g3); g3.connect(hi);
+    hi.connect(lo); lo.connect(gain); gain.connect(diktatCtx.destination);
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(vol, startTime + 0.02);
+    gain.gain.setValueAtTime(vol, startTime + dauer - 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + dauer);
+    [o1, o2, o3].forEach(o => { o.start(startTime); o.stop(startTime + dauer); });
+}
+
+function diktatFanfare() {
+    const t = diktatCtx.currentTime + 0.05;
+    diktatTrompete(523.25, t,        0.12, 0.22);
+    diktatTrompete(659.25, t + 0.13, 0.12, 0.22);
+    diktatTrompete(783.99, t + 0.26, 0.12, 0.22);
+    diktatTrompete(1046.5, t + 0.39, 0.35, 0.24);
+}
+
+function diktatBuzzer() {
+    const osc = diktatCtx.createOscillator();
+    const gain = diktatCtx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(180, diktatCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(90, diktatCtx.currentTime + 0.18);
+    gain.gain.setValueAtTime(0.25, diktatCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, diktatCtx.currentTime + 0.22);
+    osc.connect(gain); gain.connect(diktatCtx.destination);
+    osc.start(); osc.stop(diktatCtx.currentTime + 0.22);
+}
         window.addEventListener('DOMContentLoaded', init);
     </script>
 <script>
