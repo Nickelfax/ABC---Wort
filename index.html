@@ -505,13 +505,16 @@
         <button class="diktat-modus-btn" onclick="diktatSetModus('striche',this)">Nur Striche</button>
         <button class="diktat-modus-btn" onclick="diktatSetModus('blind',this)">Blind</button>
     </div>
-    <div class="diktat-buchstaben" id="diktatAnzeige"></div>
-    <input id="diktatInput" type="text" placeholder="Tippe hier…"
-           autocomplete="off" autocorrect="off" spellcheck="false" />
     <div class="diktat-status" id="diktatStatus">Hör zu und tippe das Wort</div>
-    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
         <button class="btn-speak" onclick="diktatNeuesWort()">🎲 Neues Wort</button>
         <button class="btn-speak" onclick="diktatNochmal()">🔊 Nochmal hören</button>
+    </div>
+</div>
+
+<div id="wordDisplay" class="word-display empty">
+    Klicke auf Buchstaben, um ein Wort zu bauen
+</div>
     </div>
 
 <div id="wordDisplay" class="word-display empty">
