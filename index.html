@@ -725,10 +725,14 @@
 
         /* ── Buchstaben hinzufügen / entfernen ────────────── */
         function addChar(char) {
-            currentWord.push(char);
-            updateDisplay();
-            speakChar(char);
-        }
+    if (diktatAktiv) {
+        diktatAddChar(char);
+        return;
+    }
+    currentWord.push(char);
+    updateDisplay();
+    speakChar(char);
+}
 
         function removeChar(index) {
             currentWord.splice(index, 1);
