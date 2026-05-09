@@ -1,7 +1,7 @@
 const CACHE = 'abc-wort-v1';
 const FILES = [
   '/ABC-Wort/',
-  '/ABC-Wort/index (2).html',
+  '/ABC-Wort/index.html',
   '/ABC-Wort/icon-512.png',
   '/ABC-Wort/manifest.json'
 ];
