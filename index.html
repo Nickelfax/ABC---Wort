@@ -659,14 +659,10 @@
         } catch (e) {
             savedWords = [];
         }
-
-        /* ── Initialisierung ───────────────────────────────── */
-        function init() {
-            renderDiphthongs();
-            renderAlphabet();
-            renderNumbers();
-            renderColors();
-            updateDisplay();
+function init() {
+    renderAlphabet();
+    renderColors();
+    updateDisplay();
 }
 
         /* ── Tastatur rendern ──────────────────────────────── */
