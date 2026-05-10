@@ -1141,6 +1141,8 @@ function speakWord() {
             colors.forEach(item => {
                 const btn = document.createElement('div');
                 btn.className = 'key zahl';
+               btn.style.fontSize = '0.75rem';
+               btn.style.padding = '8px 2px'; 
                 btn.textContent = item.emoji + ' ' + item.word;
                 btn.onclick = () => {
                     currentWord.push(item.word);
