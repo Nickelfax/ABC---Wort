@@ -1143,7 +1143,11 @@ function speakWord() {
                 btn.className = 'key zahl';
                btn.style.fontSize = '0.75rem';
                btn.style.padding = '8px 2px'; 
-                btn.textContent = item.emoji + ' ' + item.word;
+                btn.style.display = 'flex';
+btn.style.flexDirection = 'column';
+btn.style.alignItems = 'center';
+btn.style.gap = '2px';
+btn.innerHTML = `<span style="font-size:1.4rem;">${item.emoji}</span><span style="font-size:0.6rem;font-weight:bold;">${item.word}</span>`;
                 btn.onclick = () => {
                     currentWord.push(item.word);
                     updateDisplay();
