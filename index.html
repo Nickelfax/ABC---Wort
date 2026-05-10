@@ -980,7 +980,15 @@ if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
     document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
     document.getElementById('colorLabel').textContent = this.checked ? 'an' : 'aus';
 });
+document.getElementById('colorToggle').addEventListener('change', function() {
+    document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
+    document.getElementById('colorLabel').textContent = this.checked ? 'an' : 'aus';
+});
 
+document.getElementById('numberToggle').addEventListener('change', function() {
+    document.getElementById('numberGrid').style.display = this.checked ? '' : 'none';
+    document.getElementById('numberLabel').textContent = this.checked ? 'an' : 'aus';
+});
         function speakWord() {
             const wordStr = currentWord.join('');
             if (wordStr.length === 0) return;
