@@ -1002,24 +1002,25 @@
         }
 
         /* Anlaut-Toggle Label aktualisieren */
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('anlautToggle').addEventListener('change', function() {
-                document.getElementById('anlautLabel').textContent = this.checked ? 'an' : 'aus';
-            });
-        });document.getElementById('colorToggle').addEventListener('change', function() {
-    document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
-    document.getElementById('colorLabel').textContent = this.checked ? 'an' : 'aus';
-});
-document.getElementById('colorToggle').addEventListener('change', function() {
-    document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
-    document.getElementById('colorLabel').textContent = this.checked ? 'an' : 'aus';
+         document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('anlautToggle').addEventListener('change', function() {
+        document.getElementById('anlautLabel').textContent = this.checked ? 'an' : 'aus';
+    });
+    document.getElementById('colorToggle').addEventListener('change', function() {
+        document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
+        document.getElementById('colorLabel').textContent = this.checked ? 'an' : 'aus';
+    });
+    document.getElementById('diphthongToggle').addEventListener('change', function() {
+        document.getElementById('diphthongLabel').textContent = this.checked ? 'an' : 'aus';
+        renderAlphabet();
+    });
+    document.getElementById('numberToggle').addEventListener('change', function() {
+        document.getElementById('numberLabel').textContent = this.checked ? 'an' : 'aus';
+        renderAlphabet();
+    });
 });
 
-document.getElementById('numberToggle').addEventListener('change', function() {
-    document.getElementById('numberGrid').style.display = this.checked ? '' : 'none';
-    document.getElementById('numberLabel').textContent = this.checked ? 'an' : 'aus';
-});
-        function speakWord() {
+function speakWord() { 
             const wordStr = currentWord.join('');
             if (wordStr.length === 0) return;
             window.speechSynthesis.cancel();
