@@ -516,7 +516,15 @@
      <div class="controls">
     <button class="btn-speak"  onclick="speakWord()">🔊 Wort anhören</button>
     <button class="btn-random" onclick="randomWord()">🎲 Zufallswort</button>
-    <button class="btn-random" onclick="diktatToggle()">🎯 Diktat</button> 
+<div class="case-toggle" style="justify-content:center;">
+    <span style="font-size:0.85rem; color:#7f8c8d; font-weight:bold; 
+                 text-transform:uppercase; letter-spacing:1px;">🎯 Diktat</span>
+    <label class="toggle-switch" title="Diktat ein- oder ausschalten">
+        <input type="checkbox" id="diktatToggleSwitch" onchange="diktatToggle()">
+        <span class="toggle-slider"></span>
+    </label>
+    <span class="case-label" id="diktatLabel">aus</span>
+</div> 
     <button class="btn-clear"  onclick="clearWord()">🗑️ Alles löschen</button>
     </div>
   <div class="keyboard-container">
