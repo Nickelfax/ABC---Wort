@@ -691,56 +691,86 @@
             });
         }
 
-        function renderAlphabet() {
-            const container = document.getElementById('alphabetGrid');
-            const isLower = document.getElementById('caseToggle').checked;
-            const useEmoji = document.getElementById('emojiToggle').checked;
-            document.getElementById('caseLabel').textContent = isLower ? 'a' : 'A';
-            container.innerHTML = '';
+      function renderAlphabet() {
+    const container = document.getElementById('alphabetGrid');
+    const isLower = document.getElementById('caseToggle').checked;
+    const useEmoji = document.getElementById('emojiToggle').checked;
+    const showDiphthongs = document.getElementById('diphthongToggle').checked;
+    const showNumbers = document.getElementById('numberToggle').checked;
+    document.getElementById('caseLabel').textContent = isLower ? 'a' : 'A';
+    container.innerHTML = '';
 
-            alphabet.forEach((upperChar, idx) => {
-                const char = isLower ? upperChar.toLowerCase() : upperChar;
-                const btn = document.createElement('div');
+    // Buchstaben A-Z + Umlaute
+    alphabet.forEach((upperChar, idx) => {
+        const char = isLower ? upperChar.toLowerCase() : upperChar;
+        const btn = document.createElement('div');
+        const isVokal = vokale.has(upperChar);
+        btn.className = 'key ' + (isVokal ? 'vokal' : 'konsonant');
 
-                // Vokal/Konsonant Farbe
-                const isVokal = vokale.has(upperChar);
-                btn.className = 'key ' + (isVokal ? 'vokal' : 'konsonant');
-
-                // Emoji-Modus
-                if (useEmoji && emojiMap[upperChar]) {
-                    btn.classList.add('emoji-mode');
-                    const { emoji, word } = emojiMap[upperChar];
-                    btn.innerHTML = `<span>${emoji}</span><span class="emoji-label">${word}</span>`;
-                } else if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
-                    btn.textContent = char + '₂';
-                    btn.title = 'Zäpfchen-R';
-                } else if (upperChar === 'R') {
-                    btn.textContent = char + '₁';
-                    btn.title = 'Zungenspitzen-R';
-                } else if (upperChar === 'ß') {
-                    btn.textContent = 'ß';
-                } else {
-                    btn.textContent = char;
-                }
-
-               // Klick-Handler
-if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
-    btn.onclick = () => {
-        if (diktatAktiv) { diktatAddChar(char); return; }
-        currentWord.push(char); updateDisplay(); speakCharWithKey('r2');
-    };
-} else if (upperChar === 'R') {
-    btn.onclick = () => {
-        if (diktatAktiv) { diktatAddChar(char); return; }
-        currentWord.push(char); updateDisplay(); speakCharWithKey('r1');
-    };
-} else {
-    btn.onclick = () => addChar(upperChar === 'ß' ? 'ß' : char);
-}
-
-                container.appendChild(btn);
-            });
+        if (useEmoji && emojiMap[upperChar]) {
+            btn.classList.add('emoji-mode');
+            const { emoji, word } = emojiMap[upperChar];
+            btn.innerHTML = `<span>${emoji}</span><span class="emoji-label">${word}</span>`;
+        } else if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
+            btn.textContent = char + '₂';
+            btn.title = 'Zäpfchen-R';
+        } else if (upperChar === 'R') {
+            btn.textContent = char + '₁';
+            btn.title = 'Zungenspitzen-R';
+        } else {
+            btn.textContent = char;
         }
+
+        if (upperChar === 'R' && idx === alphabet.indexOf('R') + 1) {
+            btn.onclick = () => { if (diktatAktiv) { diktatAddChar(char); return; } currentWord.push(char); updateDisplay(); speakCharWithKey('r2'); };
+        } else if (upperChar === 'R') {
+            btn.onclick = () => { if (diktatAktiv) { diktatAddChar(char); return; } currentWord.push(char); updateDisplay(); speakCharWithKey('r1'); };
+        } else {
+            btn.onclick = () => addChar(upperChar === 'ß' ? 'ß' : char);
+        }
+        container.appendChild(btn);
+    });
+
+    // Diphthonge
+    if (showDiphthongs) {
+        diphthongs.forEach(item => {
+            const btn = document.createElement('div');
+            btn.className = 'key diphthong';
+            btn.textContent = item.char;
+            if (item.audioKey) {
+                btn.onclick = () => {
+                    currentWord.push('ch');
+                    updateDisplay();
+                    const audio = new Audio(audioData[item.audioKey]);
+                    audio.play().catch(() => speakCharTTS('ch'));
+                };
+            } else {
+                btn.onclick = () => addChar(item.char);
+            }
+            container.appendChild(btn);
+        });
+    }
+
+    // Zahlen
+    if (showNumbers) {
+        for (let i = 1; i <= 20; i++) {
+            const btn = document.createElement('div');
+            btn.className = 'key zahl';
+            btn.textContent = i;
+            btn.onclick = () => {
+                currentWord.push(String(i));
+                updateDisplay();
+                speakCharTTS(String(i));
+            };
+            container.appendChild(btn);
+        }
+        const spendenBtn = document.createElement('div');
+        spendenBtn.className = 'key zahl';
+        spendenBtn.textContent = '☕';
+        spendenBtn.onclick = () => window.open('https://ko-fi.com/nickelfax', '_blank');
+        container.appendChild(spendenBtn);
+    }
+}
 
         /* ── Buchstaben hinzufügen / entfernen ────────────── */
         function addChar(char) {
