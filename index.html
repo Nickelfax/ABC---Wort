@@ -699,6 +699,7 @@ function init() {
     // Buchstaben A-Z + Umlaute
     alphabet.forEach((upperChar, idx) => {
         const char = isLower ? upperChar.toLowerCase() : upperChar;
+        const useEmoji = document.getElementById('emojiToggle').checked;
         const btn = document.createElement('div');
         const isVokal = vokale.has(upperChar);
         btn.className = 'key ' + (isVokal ? 'vokal' : 'konsonant');
