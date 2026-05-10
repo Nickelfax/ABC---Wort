@@ -691,11 +691,9 @@ function init() {
       function renderAlphabet() {
     const container = document.getElementById('alphabetGrid');
     const isLower = document.getElementById('caseToggle').checked;
+    const useEmoji = document.getElementById('emojiToggle').checked;
     const showDiphthongs = document.getElementById('diphthongToggle').checked;
     const showNumbers = document.getElementById('numberToggle').checked;
-    document.getElementById('caseLabel').textContent = isLower ? 'a' : 'A';
-    container.innerHTML = '';
-
     // Buchstaben A-Z + Umlaute
     alphabet.forEach((upperChar, idx) => {
         const char = isLower ? upperChar.toLowerCase() : upperChar;
