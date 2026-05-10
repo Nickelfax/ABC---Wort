@@ -762,12 +762,15 @@ function init() {
             };
             container.appendChild(btn);
         }
-        const spendenBtn = document.createElement('div');
-        spendenBtn.className = 'key zahl';
-        spendenBtn.textContent = '☕';
-        spendenBtn.onclick = () => window.open('https://ko-fi.com/nickelfax', '_blank');
-        container.appendChild(spendenBtn);
-    }
+        }
+
+    // Spenden – immer sichtbar
+    const spendenBtn = document.createElement('div');
+    spendenBtn.className = 'key zahl';
+    spendenBtn.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:2px;';
+    spendenBtn.innerHTML = `<span style="font-size:1.4rem;">€</span><span style="font-size:0.6rem;font-weight:bold;">Support</span>`;
+    spendenBtn.onclick = () => window.open('https://ko-fi.com/nickelfax', '_blank');
+    container.appendChild(spendenBtn);
 }
 
         /* ── Buchstaben hinzufügen / entfernen ────────────── */
