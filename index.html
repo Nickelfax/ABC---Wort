@@ -571,12 +571,18 @@
             <div class="keyboard-grid" id="numberGrid" style="display:none;"></div>
         </div>
 
-    </div><!-- Ende keyboard-container -->
-
+   </div><!-- Ende keyboard-container -->
     <div class="keyboard-section">
         <div class="case-toggle">
-      <div class="keyboard-grid" id="colorGrid" style="display:none;"></div>
-    </div>      
+            <span class="section-title" style="margin-bottom:0;">🎨 Farben</span>
+            <label class="toggle-switch" title="Farben ein- oder ausblenden">
+                <input type="checkbox" id="colorToggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="case-label" id="colorLabel">aus</span>
+        </div>
+        <div class="keyboard-grid" id="colorGrid" style="display:none;"></div>
+    </div>    
 
     <!-- Modal -->
     <div id="storageModal" class="modal-overlay">
