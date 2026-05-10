@@ -1117,25 +1117,7 @@ function speakWord() {
             });
         }
 
-        /* ── Zahlen-Tastatur ───────────────────────────────── */
-        function renderNumbers() {
-            const grid = document.getElementById('numberGrid');
-            grid.innerHTML = '';
-            for (let i = 1; i <= 20; i++) {
-                const btn = document.createElement('div');
-                btn.className = 'key zahl';
-                btn.textContent = i;
-                btn.onclick = () => {
-                    currentWord.push(String(i));
-                    updateDisplay();speakCharTTS(String(i));
-                };
-                grid.appendChild(btn);
-            }const spendenBtn = document.createElement('div');
-            spendenBtn.className = 'key zahl';
-            spendenBtn.textContent = '☕';
-            spendenBtn.onclick = () => window.open('https://ko-fi.com/nickelfax', '_blank');
-            grid.appendChild(spendenBtn);
-        }function renderColors() {
+        function renderColors() {
             const grid = document.getElementById('colorGrid');
             grid.innerHTML = '';
             const colors = [
