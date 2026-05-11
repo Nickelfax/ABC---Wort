@@ -1007,7 +1007,7 @@ function init() {
         /* Anlaut-Toggle Label aktualisieren */
          document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('anlautToggle').addEventListener('change', function() {
-        document.getElementById('anlautLabel').textContent = this.checked ? 'an' : 'aus';
+       document.getElementById('anlautLabel').innerHTML = this.checked ? 'AB<span style="color:var(--primary);">e</span>' : '';
     });
     document.getElementById('colorToggle').addEventListener('change', function() {
         document.getElementById('colorGrid').style.display = this.checked ? '' : 'none';
