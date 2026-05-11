@@ -511,7 +511,7 @@
 <div id="wordDisplay" class="word-display empty">
     Klicke auf Buchstaben, um ein Wort zu bauen
 </div>
-    <div class="controls">
+   <div class="controls">
     <button class="btn-speak" onclick="speakWord()" title="Wort anhören">🔊</button>
     <button class="btn-random" onclick="randomWord()" title="Zufallswort">🎲</button>
     <div class="case-toggle" style="justify-content:center;">
@@ -523,7 +523,15 @@
         <span class="case-label" id="diktatLabel">aus</span>
     </div>
     <button class="btn-clear" onclick="clearWord()" title="Alles löschen">🗑️</button>
-</div><!-- Ende controls -->
+    <div class="case-toggle" style="justify-content:center;">
+        <span style="font-size:1.3rem;">🌈</span>
+        <label class="toggle-switch" title="Farben ein- oder ausblenden">
+            <input type="checkbox" id="colorToggle">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+    <button style="background:var(--success); margin-left:12px;" onclick="window.open('https://ko-fi.com/nickelfax','_blank')" title="Unterstützen">🙏</button>
+</div>
 
 <div class="keyboard-container">
     <div class="keyboard-section">
@@ -534,13 +542,12 @@
         <span class="toggle-slider"></span>
     </label>
             <span class="case-label" id="caseLabel">a</span>
-           <span style="font-size:1rem; font-weight:bold; margin-left:12px; color:#2c3e50;">ABC</span>
+           <span style="font-size:1rem; font-weight:bold; margin-left:12px; color:#2c3e50;">AB<span style="color:var(--primary); font-size:0.75rem;">e</span>C<span style="color:var(--primary); font-size:0.75rem;">e</span></span>
 <label class="toggle-switch" title="Mit oder ohne Anlaut">
     <input type="checkbox" id="anlautToggle" checked>
     <span class="toggle-slider"></span>
 </label>
-<span style="font-size:1rem; font-weight:bold; margin-left:4px;" id="anlautLabel">AB<span style="color:var(--primary);">e</span></span>
-            <label class="toggle-switch" title="Buchstaben oder Emoji-Bilder" style="margin-left:12px;">
+            <span style="font-size:1rem; font-weight:bold; margin-left:4px;" id="anlautLabel">AB<span style="color:var(--primary); font-size:0.75rem;">e</span>C<span style="color:var(--primary); font-size:0.75rem;">e</span></span>
                 <input type="checkbox" id="emojiToggle" onchange="renderAlphabet()">
                 <span class="toggle-slider"></span>
             </label>
