@@ -493,40 +493,37 @@
     </style>
 </head>
 <body>
-    <p class="subtitle">Lerne Buchstaben, Wörter und Laute!</p>
-<!-- Diktatspiel -->
-<div id="diktatBereich" class="diktat-bereich">
+  <div id="diktatBereich" class="diktat-bereich">
     <div class="diktat-score">
         <span>Richtig: <strong id="diktatRichtig">0</strong></span>
         <span>Falsch: <strong id="diktatFalsch">0</strong></span>
     </div>
     <div class="diktat-modus-zeile">
-        <button class="diktat-modus-btn aktiv" onclick="diktatSetModus('hilfe',this)">Mit Buchstaben</button>
-        <button class="diktat-modus-btn" onclick="diktatSetModus('striche',this)">Nur Striche</button>
-        <button class="diktat-modus-btn" onclick="diktatSetModus('blind',this)">Blind</button>
+        <button class="diktat-modus-btn aktiv" onclick="diktatSetModus('hilfe',this)" title="Mit Buchstaben">🔤</button>
+        <button class="diktat-modus-btn" onclick="diktatSetModus('striche',this)" title="Nur Striche">➖</button>
+        <button class="diktat-modus-btn" onclick="diktatSetModus('blind',this)" title="Blind">🙈</button>
     </div>
-    <div class="diktat-status" id="diktatStatus">Hör zu und tippe das Wort</div>
+    <div class="diktat-status" id="diktatStatus">👂</div>
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-        <button class="btn-speak" onclick="diktatNeuesWort()">🎲 Neues Wort</button>
+        <button class="btn-speak" onclick="diktatNeuesWort()" title="Neues Wort">🎲</button>
     </div>
 </div>
 <div id="wordDisplay" class="word-display empty">
     Klicke auf Buchstaben, um ein Wort zu bauen
 </div>
-     <div class="controls">
-    <button class="btn-speak"  onclick="speakWord()">🔊 Wort anhören</button>
-    <button class="btn-random" onclick="randomWord()">🎲 Zufallswort</button>
-<div class="case-toggle" style="justify-content:center;">
-    <span style="font-size:0.85rem; color:#7f8c8d; font-weight:bold; 
-                 text-transform:uppercase; letter-spacing:1px;">🎯 Diktat</span>
-    <label class="toggle-switch" title="Diktat ein- oder ausschalten">
-        <input type="checkbox" id="diktatToggleSwitch" onchange="diktatToggle()">
-        <span class="toggle-slider"></span>
-    </label>
-    <span class="case-label" id="diktatLabel">aus</span>
-</div> 
-    <button class="btn-clear"  onclick="clearWord()">🗑️ Alles löschen</button>
+    <div class="controls">
+    <button class="btn-speak" onclick="speakWord()" title="Wort anhören">🔊</button>
+    <button class="btn-random" onclick="randomWord()" title="Zufallswort">🎲</button>
+    <div class="case-toggle" style="justify-content:center;">
+        <span style="font-size:1.3rem;">🎯</span>
+        <label class="toggle-switch" title="Diktat ein- oder ausschalten">
+            <input type="checkbox" id="diktatToggleSwitch" onchange="diktatToggle()">
+            <span class="toggle-slider"></span>
+        </label>
+        <span class="case-label" id="diktatLabel">aus</span>
     </div>
+    <button class="btn-clear" onclick="clearWord()" title="Alles löschen">🗑️</button>
+</div>
   <div class="keyboard-container">
         <div class="keyboard-section">
             <div class="case-toggle">
