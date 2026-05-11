@@ -508,7 +508,13 @@
 <div id="wordDisplay" class="word-display empty">
     Klicke auf Buchstaben, um ein Wort zu bauen
 </div>
-   <div class="controls">
+
+<div style="display:flex; gap:10px; justify-content:center; align-items:center; margin-bottom:10px;">
+    <div class="diktat-status" id="diktatStatus" style="font-size:1.5rem;">👂</div>
+    <button class="btn-speak" onclick="speakWord()" title="Wort wiederholen" style="font-size:1.3rem; padding:8px 12px;">🔁</button>
+</div>
+
+<div class="controls">
     <button class="btn-speak" onclick="speakWord()" title="Wort anhören">🔊</button>
     <button class="btn-random" onclick="randomWord()" title="Zufallswort">🎲</button>
     <div class="case-toggle" style="justify-content:center;">
@@ -520,13 +526,7 @@
         <span class="case-label" id="diktatLabel">aus</span>
     </div>
     <button class="btn-clear" onclick="clearWord()" title="Alles löschen">🗑️</button>
-    <div class="case-toggle" style="justify-content:center;">
-        <span style="font-size:1.3rem;">🌈</span>
-        <label class="toggle-switch" title="Farben ein- oder ausblenden">
-            <input type="checkbox" id="colorToggle">
-            <span class="toggle-slider"></span>
-        </label>
-    </div>
+   
     <button style="background:var(--success); margin-left:12px;" onclick="window.open('https://ko-fi.com/nickelfax','_blank')" title="Unterstützen">🙏</button>
 </div>
 
@@ -575,8 +575,19 @@
         </div>
     </div>
 
-</div><!-- Ende keyboard-container -->
-     <div class="keyboard-grid" id="colorGrid" style="display:none;"></div>  
+ </div><!-- Ende keyboard-container -->
+
+<div class="keyboard-section">
+    <div class="case-toggle">
+        <span style="font-size:1.3rem;">🌈</span>
+        <label class="toggle-switch" title="Farben ein- oder ausblenden">
+            <input type="checkbox" id="colorToggle">
+            <span class="toggle-slider"></span>
+        </label>
+        <span class="case-label" id="colorLabel">aus</span>
+    </div>
+</div>
+<div class="keyboard-grid" id="colorGrid" style="display:none;"></div>
 
     <!-- Modal -->
     <div id="storageModal" class="modal-overlay">
