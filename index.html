@@ -523,29 +523,23 @@
         <span class="case-label" id="diktatLabel">aus</span>
     </div>
     <button class="btn-clear" onclick="clearWord()" title="Alles löschen">🗑️</button>
+<div class="case-toggle">
+    <label class="toggle-switch" title="Groß- oder Kleinbuchstaben">
+        <input type="checkbox" id="caseToggle" onchange="renderAlphabet()">
+        <span class="toggle-slider"></span>
+    </label>
+    <span class="case-label" id="caseLabel">A</span>
+    <label class="toggle-switch" title="Mit oder ohne Anlaut" style="margin-left:12px;">
+        <input type="checkbox" id="anlautToggle" checked>
+        <span class="toggle-slider"></span>
+    </label>
+    <span style="font-size:1rem; font-weight:bold; margin-left:4px;" id="anlautLabel">AB<span style="color:var(--primary);">e</span></span>
+    <label class="toggle-switch" title="Buchstaben oder Emoji-Bilder" style="margin-left:12px;">
+        <input type="checkbox" id="emojiToggle" onchange="renderAlphabet()">
+        <span class="toggle-slider"></span>
+    </label>
+    <span style="font-size:1.2rem; margin-left:4px;">🖼️</span>
 </div>
-  <div class="keyboard-container">
-        <div class="keyboard-section">
-            <div class="case-toggle">
-                <span class="section-title" style="margin-bottom:0;">Buchstaben (A–Z + Umlaute)</span>
-                <label class="toggle-switch" title="Groß- oder Kleinbuchstaben">
-                    <input type="checkbox" id="caseToggle" onchange="renderAlphabet()">
-                    <span class="toggle-slider"></span>
-                </label>
-                <span class="case-label" id="caseLabel">A</span>
-                <span style="font-size:0.85rem; color:#7f8c8d; font-weight:bold; text-transform:uppercase; letter-spacing:1px; margin-left:12px;">Anlaut</span>
-                <label class="toggle-switch" title="Mit oder ohne Anlaut">
-                    <input type="checkbox" id="anlautToggle" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-                <span style="font-size:1rem; font-weight:bold; margin-left:4px;" id="anlautLabel">AB<span style="color:var(--primary);">e</span></span>
-                <span style="font-size:1rem; font-weight:bold; margin-left:12px; color:#2c3e50;">AB<span style="color:var(--primary);">e</span></span>
-                <span style="font-size:0.85rem; color:#7f8c8d; font-weight:bold; text-transform:uppercase; letter-spacing:1px; margin-left:12px;">🖼️ Bilder</span>
-                <label class="toggle-switch" title="Buchstaben oder Emoji-Bilder">
-                    <input type="checkbox" id="emojiToggle" onchange="renderAlphabet()">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
           <div class="keyboard-grid" id="alphabetGrid"></div>
     </div>
 
