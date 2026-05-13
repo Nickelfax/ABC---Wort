@@ -557,6 +557,9 @@
             if (lower === 'äu') { speakCharWithKey('eu'); return; }
             if (lower === 'ß')  { speakCharWithKey('ss'); return; }
             if (lower === 'r')  { speakCharWithKey('r1'); return; }
+            if (lower === 'ä')  { speakCharWithKey('ae'); return; }
+            if (lower === 'ö')  { speakCharWithKey('oe'); return; }
+            if (lower === 'ü')  { speakCharWithKey('ue'); return; }
             const src = data[lower] || audioData[lower];
             if (src) new Audio(src).play().catch(() => speakCharTTS(char));
             else speakCharTTS(char);
