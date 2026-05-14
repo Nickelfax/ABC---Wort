@@ -483,7 +483,7 @@
             window.speechSynthesis.cancel();
             const useAnlaut = document.getElementById('anlautToggle').checked;
             // checked = ABeCe an = Phoneme (ph_) = audioDataWord
-            const data = useAnlaut ? audioDataWord : audioData;
+            const data = useAnlaut ? audioData : audioDataWord;
             const src = data[key] || audioData[key];
             if (src) new Audio(src).play().catch(() => {});
         }
@@ -493,7 +493,7 @@
             const lower = char.toLowerCase();
             const useAnlaut = document.getElementById('anlautToggle').checked;
             // checked = ABeCe an = Phoneme (ph_) = audioDataWord
-            const data = useAnlaut ? audioDataWord : audioData;
+            const data = useAnlaut ? audioData : audioDataWord;
             if (lower === 'ch')  { playAudioSequence(['ch_ich','ch_ach']); return; }
             if (lower === 'äu')  { speakCharWithKey('eu'); return; }
             if (lower === 'ß')   { speakCharWithKey('ß'); return; }
