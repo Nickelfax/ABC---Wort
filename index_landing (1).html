@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC-Wort – Deutsch lernen leicht gemacht</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #4a90e2;
+  --secondary: #f5a623;
+  --success: #2ecc71;
+  --danger: #e74c3c;
+  --dark: #1a1a2e;
+  --light: #f8f9ff;
+  --text: #2c3e50;
+  --muted: #7f8c8d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--light);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: white;
+  padding: 3rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: 'Aa Bb Cc';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 20rem;
+  opacity: 0.03;
+  top: -4rem;
+  left: -2rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: #a0c4ff;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #a0c4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  opacity: 0.7;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.cta-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245,166,35,0.5);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+/* Lang switcher */
+.lang-bar {
+  background: white;
+  border-bottom: 1px solid #e8ecf0;
+  padding: 0.75rem 2rem;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid #e8ecf0;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+}
+
+.lang-btn:hover, .lang-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Features */
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #f0f0f0;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.feature-title { font-weight: 500; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.feature-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; font-weight: 300; }
+
+/* Pricing */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.price-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid #f0f0f0;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.price-card:hover { transform: translateY(-4px); }
+
+.price-card.featured {
+  border-color: var(--primary);
+  box-shadow: 0 8px 30px rgba(74,144,226,0.15);
+}
+
+.price-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.price-period { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+.price-features { list-style: none; text-align: left; margin-bottom: 1.5rem; }
+.price-features li {
+  padding: 6px 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.price-features li::before { content: '✓'; color: var(--success); font-weight: bold; }
+.price-features li.no::before { content: '–'; color: var(--muted); }
+.price-features li.no { color: var(--muted); }
+
+.btn-cta {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn-cta-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(74,144,226,0.3);
+}
+
+.btn-cta-primary:hover {
+  box-shadow: 0 8px 25px rgba(74,144,226,0.4);
+  transform: translateY(-1px);
+}
+
+.btn-cta-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-cta-outline:hover { background: var(--primary); color: white; }
+
+/* Footer */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+}
+
+footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+/* RTL support */
+[dir="rtl"] { text-align: right; }
+[dir="rtl"] .price-features li { flex-direction: row-reverse; }
+[dir="rtl"] .cta-group { flex-direction: row-reverse; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1, .hero-sub, .cta-group {
+  animation: fadeUp 0.6s ease both;
+}
+.hero-sub { animation-delay: 0.1s; }
+.cta-group { animation-delay: 0.2s; }
+
+@media (max-width: 600px) {
+  .hero { padding: 2rem 1rem 3rem; }
+  .section { padding: 2.5rem 1rem; }
+  .lang-bar { padding: 0.5rem 1rem; gap: 6px; }
+  .lang-btn { font-size: 0.78rem; padding: 3px 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">Lern-App für Deutsch</div>
+  <h1 id="hero-title">ABC-Wort</h1>
+  <p class="hero-sub" id="hero-sub">Buchstaben, Phoneme, Diktat und Grammatik – spielerisch lernen für Kinder und Erwachsene.</p>
+  <div class="cta-group">
+    <a href="https://nickelfax.github.io/ABC-Wort/" class="btn-primary" id="btn-start">▶ App starten</a>
+    <a href="https://ko-fi.com/nickelfax" class="btn-secondary" id="btn-pro">Pro freischalten ☕</a>
+  </div>
+</div>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-btn" onclick="setLang('ar')">🇸🇦 العربية</button>
+  <button class="lang-btn" onclick="setLang('fa')">🇮🇷 فارسی</button>
+  <button class="lang-btn" onclick="setLang('hi')">🇮🇳 हिन्दी</button>
+  <button class="lang-btn" onclick="setLang('ur')">🇵🇰 اردو</button>
+  <button class="lang-btn" onclick="setLang('ru')">🇷🇺 Русский</button>
+  <button class="lang-btn" onclick="setLang('zh')">🇨🇳 中文</button>
+</div>
+
+<div class="section">
+  <h2 class="section-title" id="feat-title">Was kann ABC-Wort?</h2>
+  <p class="section-sub" id="feat-sub">Alles was du brauchst um Deutsch zu lesen, zu schreiben und zu verstehen.</p>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🔤</div>
+      <div class="feature-title" id="f1-title">Buchstaben & Phoneme</div>
+      <div class="feature-desc" id="f1-desc">Alle Buchstaben des deutschen Alphabets mit echten Audioaufnahmen – Buchstabenname und reiner Laut.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👂</div>
+      <div class="feature-title" id="f2-title">Diktat</div>
+      <div class="feature-desc" id="f2-desc">Wörter hören und tippen – mit drei Schwierigkeitsstufen und eigenen Audioaufnahmen.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📖</div>
+      <div class="feature-title" id="f3-title">Grammatik</div>
+      <div class="feature-desc" id="f3-desc">Artikel, Kasus, Konjugation und Tempus – mit farbigen Personen-Icons und Sofort-Feedback.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📵</div>
+      <div class="feature-title" id="f4-title">Offline verfügbar</div>
+      <div class="feature-desc" id="f4-desc">Einmal laden, überall nutzen – auch ohne Internetverbindung.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-title" id="f5-title">Drei Niveaus</div>
+      <div class="feature-desc" id="f5-desc">Von Vorschule bis Erwachsene – N1 für Anfänger, N2 für Fortgeschrittene, N3 für komplexe Strukturen.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌈</div>
+      <div class="feature-title" id="f6-title">Farben & Emojis</div>
+      <div class="feature-desc" id="f6-desc">Visuelle Lernhilfen – Anlautbilder, Farben und Personenicons machen abstrakte Grammatik greifbar.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title" id="price-title">Preise</h2>
+  <p class="section-sub" id="price-sub">Einmalig bezahlen – für immer nutzen.</p>
+
+  <div class="pricing">
+    <div class="price-card">
+      <div class="price-amount" id="p1-price">Kostenlos</div>
+      <div class="price-period" id="p1-period">für immer</div>
+      <ul class="price-features">
+        <li id="p1-f1">Alle Buchstaben & Phoneme</li>
+        <li id="p1-f2">Diktat Niveau 1</li>
+        <li id="p1-f3">Grammatik Niveau 1</li>
+        <li class="no" id="p1-f4">Niveau 2 & 3</li>
+        <li class="no" id="p1-f5">Offline-Modus</li>
+      </ul>
+      <a href="https://nickelfax.github.io/ABC-Wort/" class="btn-cta btn-cta-outline" id="p1-btn">App starten</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">Pro</div>
+      <div class="price-amount">2,99€</div>
+      <div class="price-period" id="p2-period">einmalig</div>
+      <ul class="price-features">
+        <li id="p2-f1">Alles aus Free</li>
+        <li id="p2-f2">Alle Niveaus (N1–N3)</li>
+        <li id="p2-f3">Vollständige Grammatik</li>
+        <li id="p2-f4">Offline-Modus</li>
+        <li id="p2-f5">Automatische Updates</li>
+      </ul>
+      <a href="https://ko-fi.com/nickelfax" class="btn-cta btn-cta-primary" id="p2-btn">Pro freischalten ☕</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p id="footer-text">ABC-Wort · Von Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">App starten</a></p>
+</footer>
+
+<script>
+const translations = {
+  de: {
+    dir: 'ltr',
+    'hero-badge': 'Lern-App für Deutsch',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'Buchstaben, Phoneme, Diktat und Grammatik – spielerisch lernen für Kinder und Erwachsene.',
+    'btn-start': '▶ App starten',
+    'btn-pro': 'Pro freischalten ☕',
+    'feat-title': 'Was kann ABC-Wort?',
+    'feat-sub': 'Alles was du brauchst um Deutsch zu lesen, zu schreiben und zu verstehen.',
+    'f1-title': 'Buchstaben & Phoneme',
+    'f1-desc': 'Alle Buchstaben des deutschen Alphabets mit echten Audioaufnahmen – Buchstabenname und reiner Laut.',
+    'f2-title': 'Diktat',
+    'f2-desc': 'Wörter hören und tippen – mit drei Schwierigkeitsstufen und eigenen Audioaufnahmen.',
+    'f3-title': 'Grammatik',
+    'f3-desc': 'Artikel, Kasus, Konjugation und Tempus – mit farbigen Personen-Icons und Sofort-Feedback.',
+    'f4-title': 'Offline verfügbar',
+    'f4-desc': 'Einmal laden, überall nutzen – auch ohne Internetverbindung.',
+    'f5-title': 'Drei Niveaus',
+    'f5-desc': 'Von Vorschule bis Erwachsene – N1 für Anfänger, N2 für Fortgeschrittene, N3 für komplexe Strukturen.',
+    'f6-title': 'Farben & Emojis',
+    'f6-desc': 'Visuelle Lernhilfen – Anlautbilder, Farben und Personenicons machen abstrakte Grammatik greifbar.',
+    'price-title': 'Preise',
+    'price-sub': 'Einmalig bezahlen – für immer nutzen.',
+    'p1-price': 'Kostenlos',
+    'p1-period': 'für immer',
+    'p1-f1': 'Alle Buchstaben & Phoneme',
+    'p1-f2': 'Diktat Niveau 1',
+    'p1-f3': 'Grammatik Niveau 1',
+    'p1-f4': 'Niveau 2 & 3',
+    'p1-f5': 'Offline-Modus',
+    'p1-btn': 'App starten',
+    'p2-period': 'einmalig',
+    'p2-f1': 'Alles aus Free',
+    'p2-f2': 'Alle Niveaus (N1–N3)',
+    'p2-f3': 'Vollständige Grammatik',
+    'p2-f4': 'Offline-Modus',
+    'p2-f5': 'Automatische Updates',
+    'p2-btn': 'Pro freischalten ☕',
+    'footer-text': 'ABC-Wort · Von Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">App starten</a>',
+  },
+  en: {
+    dir: 'ltr',
+    'hero-badge': 'German Learning App',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'Letters, phonics, dictation and grammar – playful learning for children and adults.',
+    'btn-start': '▶ Start App',
+    'btn-pro': 'Unlock Pro ☕',
+    'feat-title': 'What can ABC-Wort do?',
+    'feat-sub': 'Everything you need to read, write and understand German.',
+    'f1-title': 'Letters & Phonics',
+    'f1-desc': 'All letters of the German alphabet with real audio recordings – letter name and pure sound.',
+    'f2-title': 'Dictation',
+    'f2-desc': 'Listen and type words – with three difficulty levels and original audio recordings.',
+    'f3-title': 'Grammar',
+    'f3-desc': 'Articles, cases, conjugation and tenses – with colourful person icons and instant feedback.',
+    'f4-title': 'Works Offline',
+    'f4-desc': 'Load once, use anywhere – even without an internet connection.',
+    'f5-title': 'Three Levels',
+    'f5-desc': 'From preschool to adult – N1 for beginners, N2 for intermediate, N3 for complex structures.',
+    'f6-title': 'Colours & Emojis',
+    'f6-desc': 'Visual learning aids – initial-sound images, colours and person icons make abstract grammar tangible.',
+    'price-title': 'Pricing',
+    'price-sub': 'Pay once – use forever.',
+    'p1-price': 'Free',
+    'p1-period': 'forever',
+    'p1-f1': 'All letters & phonics',
+    'p1-f2': 'Dictation Level 1',
+    'p1-f3': 'Grammar Level 1',
+    'p1-f4': 'Levels 2 & 3',
+    'p1-f5': 'Offline mode',
+    'p1-btn': 'Start App',
+    'p2-period': 'one-time',
+    'p2-f1': 'Everything in Free',
+    'p2-f2': 'All levels (N1–N3)',
+    'p2-f3': 'Full grammar',
+    'p2-f4': 'Offline mode',
+    'p2-f5': 'Automatic updates',
+    'p2-btn': 'Unlock Pro ☕',
+    'footer-text': 'ABC-Wort · By Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">Start App</a>',
+  },
+  ar: {
+    dir: 'rtl',
+    'hero-badge': 'تطبيق تعلم اللغة الألمانية',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'الحروف والأصوات والإملاء والقواعد – تعلّم ممتع للأطفال والبالغين.',
+    'btn-start': '▶ ابدأ التطبيق',
+    'btn-pro': 'فعّل النسخة المدفوعة ☕',
+    'feat-title': 'ما الذي يمكن لـ ABC-Wort فعله؟',
+    'feat-sub': 'كل ما تحتاجه لقراءة الألمانية وكتابتها وفهمها.',
+    'f1-title': 'الحروف والأصوات',
+    'f1-desc': 'جميع حروف الأبجدية الألمانية مع تسجيلات صوتية حقيقية – اسم الحرف وصوته الخالص.',
+    'f2-title': 'الإملاء',
+    'f2-desc': 'استمع واكتب الكلمات – بثلاثة مستويات صعوبة وتسجيلات صوتية أصيلة.',
+    'f3-title': 'القواعد',
+    'f3-desc': 'المقالات والحالات الإعرابية والصرف والأزمنة – مع أيقونات ملونة وتغذية راجعة فورية.',
+    'f4-title': 'يعمل بدون إنترنت',
+    'f4-desc': 'حمّله مرة واحدة واستخدمه في أي مكان – حتى بدون اتصال بالإنترنت.',
+    'f5-title': 'ثلاثة مستويات',
+    'f5-desc': 'من رياض الأطفال حتى البالغين – N1 للمبتدئين، N2 للمتوسطين، N3 للتراكيب المعقدة.',
+    'f6-title': 'الألوان والرموز',
+    'f6-desc': 'وسائل تعليمية بصرية – الصور والألوان وأيقونات الأشخاص تجعل القواعد المجردة ملموسة.',
+    'price-title': 'الأسعار',
+    'price-sub': 'ادفع مرة واحدة – استخدمه للأبد.',
+    'p1-price': 'مجاني',
+    'p1-period': 'للأبد',
+    'p1-f1': 'جميع الحروف والأصوات',
+    'p1-f2': 'الإملاء المستوى 1',
+    'p1-f3': 'القواعد المستوى 1',
+    'p1-f4': 'المستويان 2 و 3',
+    'p1-f5': 'وضع عدم الاتصال',
+    'p1-btn': 'ابدأ التطبيق',
+    'p2-period': 'دفعة واحدة',
+    'p2-f1': 'كل ما في النسخة المجانية',
+    'p2-f2': 'جميع المستويات (N1–N3)',
+    'p2-f3': 'القواعد الكاملة',
+    'p2-f4': 'وضع عدم الاتصال',
+    'p2-f5': 'تحديثات تلقائية',
+    'p2-btn': 'فعّل النسخة المدفوعة ☕',
+    'footer-text': 'ABC-Wort · بواسطة Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">ابدأ التطبيق</a>',
+  },
+  fa: {
+    dir: 'rtl',
+    'hero-badge': 'اپلیکیشن یادگیری آلمانی',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'حروف، آواها، دیکته و دستور زبان – یادگیری بازی‌وار برای کودکان و بزرگسالان.',
+    'btn-start': '▶ شروع اپلیکیشن',
+    'btn-pro': 'نسخه پرو را فعال کنید ☕',
+    'feat-title': 'ABC-Wort چه قابلیت‌هایی دارد؟',
+    'feat-sub': 'هر چیزی که برای خواندن، نوشتن و فهمیدن آلمانی نیاز دارید.',
+    'f1-title': 'حروف و آواها',
+    'f1-desc': 'تمام حروف الفبای آلمانی با ضبط صدای واقعی – نام حرف و صدای خالص آن.',
+    'f2-title': 'دیکته',
+    'f2-desc': 'گوش دهید و کلمات را تایپ کنید – با سه سطح دشواری و ضبط صداهای اصیل.',
+    'f3-title': 'دستور زبان',
+    'f3-desc': 'مقالات، حالت‌های دستوری، صرف و زمان‌ها – با آیکون‌های رنگی و بازخورد فوری.',
+    'f4-title': 'کار بدون اینترنت',
+    'f4-desc': 'یک بار بارگذاری کنید، همه جا استفاده کنید – حتی بدون اتصال به اینترنت.',
+    'f5-title': 'سه سطح',
+    'f5-desc': 'از پیش‌دبستانی تا بزرگسال – N1 برای مبتدیان، N2 برای متوسطان، N3 برای ساختارهای پیچیده.',
+    'f6-title': 'رنگ‌ها و شکلک‌ها',
+    'f6-desc': 'کمک‌های بصری یادگیری – تصاویر، رنگ‌ها و آیکون‌های اشخاص دستور زبان انتزاعی را ملموس می‌کنند.',
+    'price-title': 'قیمت‌ها',
+    'price-sub': 'یک بار پرداخت – برای همیشه استفاده کنید.',
+    'p1-price': 'رایگان',
+    'p1-period': 'برای همیشه',
+    'p1-f1': 'تمام حروف و آواها',
+    'p1-f2': 'دیکته سطح ۱',
+    'p1-f3': 'دستور زبان سطح ۱',
+    'p1-f4': 'سطوح ۲ و ۳',
+    'p1-f5': 'حالت آفلاین',
+    'p1-btn': 'شروع اپلیکیشن',
+    'p2-period': 'یک‌باره',
+    'p2-f1': 'همه چیز از نسخه رایگان',
+    'p2-f2': 'تمام سطوح (N1–N3)',
+    'p2-f3': 'دستور زبان کامل',
+    'p2-f4': 'حالت آفلاین',
+    'p2-f5': 'به‌روزرسانی‌های خودکار',
+    'p2-btn': 'نسخه پرو را فعال کنید ☕',
+    'footer-text': 'ABC-Wort · توسط Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">شروع اپلیکیشن</a>',
+  },
+  hi: {
+    dir: 'ltr',
+    'hero-badge': 'जर्मन सीखने का ऐप',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'अक्षर, ध्वनियाँ, श्रुतलेख और व्याकरण – बच्चों और वयस्कों के लिए खेल-खेल में सीखें।',
+    'btn-start': '▶ ऐप शुरू करें',
+    'btn-pro': 'Pro अनलॉक करें ☕',
+    'feat-title': 'ABC-Wort क्या कर सकता है?',
+    'feat-sub': 'जर्मन पढ़ने, लिखने और समझने के लिए जो कुछ भी चाहिए।',
+    'f1-title': 'अक्षर और ध्वनियाँ',
+    'f1-desc': 'जर्मन वर्णमाला के सभी अक्षर असली ऑडियो रिकॉर्डिंग के साथ – अक्षर का नाम और शुद्ध ध्वनि।',
+    'f2-title': 'श्रुतलेख',
+    'f2-desc': 'सुनें और शब्द टाइप करें – तीन कठिनाई स्तरों और मूल ऑडियो रिकॉर्डिंग के साथ।',
+    'f3-title': 'व्याकरण',
+    'f3-desc': 'लेख, कारक, संयुग्मन और काल – रंगीन व्यक्ति आइकन और तत्काल प्रतिक्रिया के साथ।',
+    'f4-title': 'ऑफलाइन उपलब्ध',
+    'f4-desc': 'एक बार लोड करें, कहीं भी उपयोग करें – इंटरनेट के बिना भी।',
+    'f5-title': 'तीन स्तर',
+    'f5-desc': 'पूर्वस्कूल से वयस्क तक – शुरुआती के लिए N1, मध्यवर्ती के लिए N2, जटिल संरचनाओं के लिए N3।',
+    'f6-title': 'रंग और इमोजी',
+    'f6-desc': 'दृश्य शिक्षण सहायक – चित्र, रंग और व्यक्ति आइकन अमूर्त व्याकरण को ठोस बनाते हैं।',
+    'price-title': 'मूल्य',
+    'price-sub': 'एक बार भुगतान करें – हमेशा के लिए उपयोग करें।',
+    'p1-price': 'निःशुल्क',
+    'p1-period': 'हमेशा के लिए',
+    'p1-f1': 'सभी अक्षर और ध्वनियाँ',
+    'p1-f2': 'श्रुतलेख स्तर 1',
+    'p1-f3': 'व्याकरण स्तर 1',
+    'p1-f4': 'स्तर 2 और 3',
+    'p1-f5': 'ऑफलाइन मोड',
+    'p1-btn': 'ऐप शुरू करें',
+    'p2-period': 'एकमुश्त',
+    'p2-f1': 'Free का सब कुछ',
+    'p2-f2': 'सभी स्तर (N1–N3)',
+    'p2-f3': 'पूर्ण व्याकरण',
+    'p2-f4': 'ऑफलाइन मोड',
+    'p2-f5': 'स्वचालित अपडेट',
+    'p2-btn': 'Pro अनलॉक करें ☕',
+    'footer-text': 'ABC-Wort · Nickelfax द्वारा · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">ऐप शुरू करें</a>',
+  },
+  ur: {
+    dir: 'rtl',
+    'hero-badge': 'جرمن زبان سیکھنے کی ایپ',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'حروف، آوازیں، املا اور گرامر – بچوں اور بڑوں کے لیے کھیل کھیل میں سیکھیں۔',
+    'btn-start': '▶ ایپ شروع کریں',
+    'btn-pro': 'پرو انلاک کریں ☕',
+    'feat-title': 'ABC-Wort کیا کر سکتا ہے؟',
+    'feat-sub': 'جرمن پڑھنے، لکھنے اور سمجھنے کے لیے جو کچھ بھی چاہیے۔',
+    'f1-title': 'حروف اور آوازیں',
+    'f1-desc': 'جرمن حروف تہجی کے تمام حروف اصلی آڈیو ریکارڈنگ کے ساتھ – حرف کا نام اور خالص آواز۔',
+    'f2-title': 'املا',
+    'f2-desc': 'سنیں اور الفاظ ٹائپ کریں – تین مشکل سطحوں اور اصلی آڈیو ریکارڈنگ کے ساتھ۔',
+    'f3-title': 'گرامر',
+    'f3-desc': 'آرٹیکل، کیس، فعل کی گردان اور زمانے – رنگین شخصیت آئیکنز اور فوری فیڈبیک کے ساتھ۔',
+    'f4-title': 'آف لائن دستیاب',
+    'f4-desc': 'ایک بار لوڈ کریں، کہیں بھی استعمال کریں – انٹرنیٹ کے بغیر بھی۔',
+    'f5-title': 'تین سطحیں',
+    'f5-desc': 'پری اسکول سے بڑوں تک – مبتدیوں کے لیے N1، درمیانے کے لیے N2، پیچیدہ ڈھانچوں کے لیے N3۔',
+    'f6-title': 'رنگ اور ایموجی',
+    'f6-desc': 'بصری تعلیمی مددگار – تصاویر، رنگ اور شخصیت آئیکنز تجریدی گرامر کو محسوس بناتے ہیں۔',
+    'price-title': 'قیمتیں',
+    'price-sub': 'ایک بار ادائیگی کریں – ہمیشہ کے لیے استعمال کریں۔',
+    'p1-price': 'مفت',
+    'p1-period': 'ہمیشہ کے لیے',
+    'p1-f1': 'تمام حروف اور آوازیں',
+    'p1-f2': 'املا سطح 1',
+    'p1-f3': 'گرامر سطح 1',
+    'p1-f4': 'سطح 2 اور 3',
+    'p1-f5': 'آف لائن موڈ',
+    'p1-btn': 'ایپ شروع کریں',
+    'p2-period': 'یک بار',
+    'p2-f1': 'Free کا سب کچھ',
+    'p2-f2': 'تمام سطحیں (N1–N3)',
+    'p2-f3': 'مکمل گرامر',
+    'p2-f4': 'آف لائن موڈ',
+    'p2-f5': 'خودکار اپڈیٹس',
+    'p2-btn': 'پرو انلاک کریں ☕',
+    'footer-text': 'ABC-Wort · از Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">ایپ شروع کریں</a>',
+  },
+  ru: {
+    dir: 'ltr',
+    'hero-badge': 'Приложение для изучения немецкого',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': 'Буквы, фонемы, диктант и грамматика – игровое обучение для детей и взрослых.',
+    'btn-start': '▶ Открыть приложение',
+    'btn-pro': 'Разблокировать Pro ☕',
+    'feat-title': 'Что умеет ABC-Wort?',
+    'feat-sub': 'Всё необходимое для чтения, письма и понимания немецкого языка.',
+    'f1-title': 'Буквы и фонемы',
+    'f1-desc': 'Все буквы немецкого алфавита с настоящими аудиозаписями – название буквы и чистый звук.',
+    'f2-title': 'Диктант',
+    'f2-desc': 'Слушайте и печатайте слова – три уровня сложности и оригинальные аудиозаписи.',
+    'f3-title': 'Грамматика',
+    'f3-desc': 'Артикли, падежи, спряжение и времена – с цветными иконками и мгновенной обратной связью.',
+    'f4-title': 'Работает офлайн',
+    'f4-desc': 'Загрузите один раз – используйте везде, даже без интернета.',
+    'f5-title': 'Три уровня',
+    'f5-desc': 'От детского сада до взрослых – N1 для начинающих, N2 для среднего, N3 для сложных структур.',
+    'f6-title': 'Цвета и эмодзи',
+    'f6-desc': 'Визуальные учебные пособия – картинки, цвета и иконки делают абстрактную грамматику понятной.',
+    'price-title': 'Цены',
+    'price-sub': 'Платите один раз – пользуйтесь навсегда.',
+    'p1-price': 'Бесплатно',
+    'p1-period': 'навсегда',
+    'p1-f1': 'Все буквы и фонемы',
+    'p1-f2': 'Диктант уровень 1',
+    'p1-f3': 'Грамматика уровень 1',
+    'p1-f4': 'Уровни 2 и 3',
+    'p1-f5': 'Офлайн-режим',
+    'p1-btn': 'Открыть приложение',
+    'p2-period': 'единоразово',
+    'p2-f1': 'Всё из Free',
+    'p2-f2': 'Все уровни (N1–N3)',
+    'p2-f3': 'Полная грамматика',
+    'p2-f4': 'Офлайн-режим',
+    'p2-f5': 'Автоматические обновления',
+    'p2-btn': 'Разблокировать Pro ☕',
+    'footer-text': 'ABC-Wort · от Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">Открыть приложение</a>',
+  },
+  zh: {
+    dir: 'ltr',
+    'hero-badge': '德语学习应用',
+    'hero-title': 'ABC-Wort',
+    'hero-sub': '字母、语音、听写和语法 – 适合儿童和成人的趣味学习。',
+    'btn-start': '▶ 开始使用',
+    'btn-pro': '解锁专业版 ☕',
+    'feat-title': 'ABC-Wort 能做什么？',
+    'feat-sub': '学习德语阅读、写作和理解所需的一切。',
+    'f1-title': '字母与语音',
+    'f1-desc': '德语字母表的所有字母配有真实录音 – 字母名称和纯粹发音。',
+    'f2-title': '听写',
+    'f2-desc': '聆听并输入单词 – 三个难度级别和原创录音。',
+    'f3-title': '语法',
+    'f3-desc': '冠词、格、动词变位和时态 – 配有彩色人物图标和即时反馈。',
+    'f4-title': '离线可用',
+    'f4-desc': '加载一次，随处使用 – 即使没有互联网连接。',
+    'f5-title': '三个级别',
+    'f5-desc': '从幼儿园到成人 – N1适合初学者，N2适合中级，N3适合复杂结构。',
+    'f6-title': '颜色与表情符号',
+    'f6-desc': '视觉学习辅助工具 – 图片、颜色和人物图标让抽象语法变得具体。',
+    'price-title': '价格',
+    'price-sub': '一次付费 – 永久使用。',
+    'p1-price': '免费',
+    'p1-period': '永久',
+    'p1-f1': '所有字母和语音',
+    'p1-f2': '听写第1级',
+    'p1-f3': '语法第1级',
+    'p1-f4': '第2和第3级',
+    'p1-f5': '离线模式',
+    'p1-btn': '开始使用',
+    'p2-period': '一次性',
+    'p2-f1': '免费版的所有内容',
+    'p2-f2': '所有级别 (N1–N3)',
+    'p2-f3': '完整语法',
+    'p2-f4': '离线模式',
+    'p2-f5': '自动更新',
+    'p2-btn': '解锁专业版 ☕',
+    'footer-text': 'ABC-Wort · 作者 Nickelfax · <a href="https://ko-fi.com/nickelfax">Ko-fi</a> · <a href="https://nickelfax.github.io/ABC-Wort/">开始使用</a>',
+  }
+};
+
+function setLang(lang) {
+  const t = translations[lang];
+  if (!t) return;
+
+  // RTL support
+  document.documentElement.dir = t.dir;
+  document.documentElement.lang = lang;
+
+  // Update all text elements
+  Object.keys(t).forEach(id => {
+    if (id === 'dir') return;
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = t[id];
+  });
+
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
