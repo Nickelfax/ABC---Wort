@@ -1,1 +1,600 @@
-
+{
+  "version": "1.0",
+  "n1": {
+    "worte": [
+      {
+        "wort": "Essen",
+        "audio": "audio_diktat/Essen.m4a"
+      },
+      {
+        "wort": "Ball",
+        "audio": "audio_diktat/Ball.m4a"
+      },
+      {
+        "wort": "Buch",
+        "audio": "audio_diktat/Buch.m4a"
+      },
+      {
+        "wort": "Ei",
+        "audio": "audio_diktat/Ei.m4a"
+      },
+      {
+        "wort": "Fisch",
+        "audio": "audio_diktat/Fisch.m4a"
+      },
+      {
+        "wort": "Gehen",
+        "audio": "audio_diktat/Gehen.m4a"
+      },
+      {
+        "wort": "Groß",
+        "audio": "audio_diktat/Groß.m4a"
+      },
+      {
+        "wort": "Haben",
+        "audio": "audio_diktat/Haben.m4a"
+      },
+      {
+        "wort": "Hand",
+        "audio": "audio_diktat/Hand.m4a"
+      },
+      {
+        "wort": "Heiß",
+        "audio": "audio_diktat/Heiß.m4a"
+      },
+      {
+        "wort": "Hund",
+        "audio": "audio_diktat/Hund.m4a"
+      },
+      {
+        "wort": "Kalt",
+        "audio": "audio_diktat/Kalt.m4a"
+      },
+      {
+        "wort": "Klein",
+        "audio": "audio_diktat/Klein.m4a"
+      },
+      {
+        "wort": "Laufen",
+        "audio": "audio_diktat/Laufen.m4a"
+      },
+      {
+        "wort": "Laut",
+        "audio": "audio_diktat/Laut.m4a"
+      },
+      {
+        "wort": "Machen",
+        "audio": "audio_diktat/Machen.m4a"
+      },
+      {
+        "wort": "Mond",
+        "audio": "audio_diktat/Mond.m4a"
+      },
+      {
+        "wort": "Nase",
+        "audio": "audio_diktat/Nase.m4a"
+      },
+      {
+        "wort": "Nass",
+        "audio": "audio_diktat/Nass.m4a"
+      },
+      {
+        "wort": "Neu",
+        "audio": "audio_diktat/Neu.m4a"
+      },
+      {
+        "wort": "Rufen",
+        "audio": "audio_diktat/Rufen.m4a"
+      },
+      {
+        "wort": "Sehen",
+        "audio": "audio_diktat/Sehen.m4a"
+      },
+      {
+        "wort": "Sitzen",
+        "audio": "audio_diktat/Sitzen.m4a"
+      },
+      {
+        "wort": "Sonne",
+        "audio": "audio_diktat/Sonne.m4a"
+      },
+      {
+        "wort": "Tragen",
+        "audio": "audio_diktat/Tragen.m4a"
+      },
+      {
+        "wort": "Warm",
+        "audio": "audio_diktat/Warm.m4a"
+      },
+      {
+        "wort": "Waschen",
+        "audio": "audio_diktat/Waschen.m4a"
+      },
+      {
+        "wort": "Zug",
+        "audio": "audio_diktat/Zug.m4a"
+      },
+      {
+        "wort": "Auf",
+        "audio": "audio_diktat/Auf.m4a"
+      },
+      {
+        "wort": "Aus",
+        "audio": "audio_diktat/Aus.m4a"
+      },
+      {
+        "wort": "Bei",
+        "audio": "audio_diktat/Bei.m4a"
+      },
+      {
+        "wort": "In",
+        "audio": "audio_diktat/In.m4a"
+      },
+      {
+        "wort": "Mit",
+        "audio": "audio_diktat/Mit.m4a"
+      },
+      {
+        "wort": "Nach",
+        "audio": "audio_diktat/Nach.m4a"
+      },
+      {
+        "wort": "Unter",
+        "audio": "audio_diktat/Unter.m4a"
+      },
+      {
+        "wort": "Vor",
+        "audio": "audio_diktat/Vor.m4a"
+      },
+      {
+        "wort": "Über",
+        "audio": "audio_diktat/Über.m4a"
+      },
+      {
+        "wort": "Alt",
+        "audio": "audio_diktat/Alt.m4a"
+      }
+    ],
+    "silben": [
+      {
+        "wort": "ab",
+        "audio": "audio_diktat/Ab-.m4a"
+      },
+      {
+        "wort": "be",
+        "audio": "audio_diktat/Be-.m4a"
+      },
+      {
+        "wort": "ein",
+        "audio": "audio_diktat/Ein-.m4a"
+      },
+      {
+        "wort": "er",
+        "audio": "audio_diktat/Er-.m4a"
+      },
+      {
+        "wort": "ge",
+        "audio": "audio_diktat/Ge-.m4a"
+      },
+      {
+        "wort": "ver",
+        "audio": "audio_diktat/Ver-.m4a"
+      },
+      {
+        "wort": "zer",
+        "audio": "audio_diktat/Zer-.m4a"
+      }
+    ]
+  },
+  "n2": {
+    "worte": [
+      {
+        "wort": "Ampel",
+        "audio": "audio_diktat/Ampel.m4a"
+      },
+      {
+        "wort": "Basteln",
+        "audio": "audio_diktat/Basteln.m4a"
+      },
+      {
+        "wort": "Blume",
+        "audio": "audio_diktat/Blume.m4a"
+      },
+      {
+        "wort": "Böse",
+        "audio": "audio_diktat/Böse.m4a"
+      },
+      {
+        "wort": "Brücke",
+        "audio": "audio_diktat/Brücke.m4a"
+      },
+      {
+        "wort": "Denken",
+        "audio": "audio_diktat/Denken.m4a"
+      },
+      {
+        "wort": "Dunkel",
+        "audio": "audio_diktat/Dunkel.m4a"
+      },
+      {
+        "wort": "Fahren",
+        "audio": "audio_diktat/Fahren.m4a"
+      },
+      {
+        "wort": "Fleißig",
+        "audio": "audio_diktat/Fleißig.m4a"
+      },
+      {
+        "wort": "Fröhlich",
+        "audio": "audio_diktat/Fröhlich.m4a"
+      },
+      {
+        "wort": "Garten",
+        "audio": "audio_diktat/Garten.m4a"
+      },
+      {
+        "wort": "Helfen",
+        "audio": "audio_diktat/Helfen.m4a"
+      },
+      {
+        "wort": "Hungrig",
+        "audio": "audio_diktat/Hungrig.m4a"
+      },
+      {
+        "wort": "Jacke",
+        "audio": "audio_diktat/Jacke.m4a"
+      },
+      {
+        "wort": "Kaufen",
+        "audio": "audio_diktat/Kaufen.m4a"
+      },
+      {
+        "wort": "Koffer",
+        "audio": "audio_diktat/Koffer.m4a"
+      },
+      {
+        "wort": "Lernen",
+        "audio": "audio_diktat/Lernen.m4a"
+      },
+      {
+        "wort": "Lustig",
+        "audio": "audio_diktat/Lustig.m4a"
+      },
+      {
+        "wort": "Müde",
+        "audio": "audio_diktat/Müde.m4a"
+      },
+      {
+        "wort": "Sauber",
+        "audio": "audio_diktat/Sauber.m4a"
+      },
+      {
+        "wort": "Schlafen",
+        "audio": "audio_diktat/Schlafen.m4a"
+      },
+      {
+        "wort": "Schnell",
+        "audio": "audio_diktat/Schnel.m4a"
+      },
+      {
+        "wort": "Schule",
+        "audio": "audio_diktat/Schule.m4a"
+      },
+      {
+        "wort": "Spielen",
+        "audio": "audio_diktat/Spielen.m4a"
+      },
+      {
+        "wort": "Straße",
+        "audio": "audio_diktat/Straße.m4a"
+      },
+      {
+        "wort": "Suchen",
+        "audio": "audio_diktat/Suchen.m4a"
+      },
+      {
+        "wort": "Traurig",
+        "audio": "audio_diktat/Traurig.m4a"
+      },
+      {
+        "wort": "Treppe",
+        "audio": "audio_diktat/Treppe.m4a"
+      },
+      {
+        "wort": "Warten",
+        "audio": "audio_diktat/Warten.m4a"
+      },
+      {
+        "wort": "Zimmer",
+        "audio": "audio_diktat/Zimmer.m4a"
+      },
+      {
+        "wort": "Außer",
+        "audio": "audio_diktat/Außer.m4a"
+      },
+      {
+        "wort": "Durch",
+        "audio": "audio_diktat/Durch.m4a"
+      },
+      {
+        "wort": "Gegen",
+        "audio": "audio_diktat/Gegen.m4a"
+      },
+      {
+        "wort": "Hinter",
+        "audio": "audio_diktat/Hinter.m4a"
+      },
+      {
+        "wort": "Ohne",
+        "audio": "audio_diktat/Ohne.m4a"
+      },
+      {
+        "wort": "Seit",
+        "audio": "audio_diktat/Seit.m4a"
+      },
+      {
+        "wort": "Trotz",
+        "audio": "audio_diktat/Trotz.m4a"
+      },
+      {
+        "wort": "Wegen",
+        "audio": "audio_diktat/Wegen.m4a"
+      },
+      {
+        "wort": "Während",
+        "audio": "audio_diktat/Während.m4a"
+      },
+      {
+        "wort": "Zwischen",
+        "audio": "audio_diktat/Zwischen.m4a"
+      }
+    ],
+    "silben": [
+      {
+        "wort": "fehl",
+        "audio": "audio_diktat/Fehl-.m4a"
+      },
+      {
+        "wort": "fort",
+        "audio": "audio_diktat/Fort-.m4a"
+      },
+      {
+        "wort": "miss",
+        "audio": "audio_diktat/Miss.m4a"
+      },
+      {
+        "wort": "um",
+        "audio": "audio_diktat/Um-.m4a"
+      },
+      {
+        "wort": "un",
+        "audio": "audio_diktat/Un-.m4a"
+      },
+      {
+        "wort": "unter",
+        "audio": "audio_diktat/Unter-.m4a"
+      },
+      {
+        "wort": "vor",
+        "audio": "audio_diktat/Vor-.m4a"
+      },
+      {
+        "wort": "weg",
+        "audio": "audio_diktat/Weg.m4a"
+      },
+      {
+        "wort": "zurück",
+        "audio": "audio_diktat/Zurück-.m4a"
+      },
+      {
+        "wort": "über",
+        "audio": "audio_diktat/Über-.m4a"
+      },
+      {
+        "wort": "bar",
+        "audio": "audio_diktat/-Bar.m4a"
+      },
+      {
+        "wort": "haft",
+        "audio": "audio_diktat/-haft.m4a"
+      },
+      {
+        "wort": "heit",
+        "audio": "audio_diktat/-heit.m4a"
+      },
+      {
+        "wort": "ig",
+        "audio": "audio_diktat/-ig.m4a"
+      },
+      {
+        "wort": "keit",
+        "audio": "audio_diktat/-keit.m4a"
+      },
+      {
+        "wort": "lich",
+        "audio": "audio_diktat/-Lich.m4a"
+      },
+      {
+        "wort": "ling",
+        "audio": "audio_diktat/-ling.m4a"
+      },
+      {
+        "wort": "los",
+        "audio": "audio_diktat/-los.m4a"
+      },
+      {
+        "wort": "schaft",
+        "audio": "audio_diktat/-schaft.m4a"
+      },
+      {
+        "wort": "ung",
+        "audio": "audio_diktat/-ung.m4a"
+      }
+    ]
+  },
+  "n3": {
+    "worte": [
+      {
+        "wort": "Begeisterung",
+        "audio": "audio_diktat/Begeisterung.m4a"
+      },
+      {
+        "wort": "Entscheidung",
+        "audio": "audio_diktat/Entscheidung.m4a"
+      },
+      {
+        "wort": "Freundschaft",
+        "audio": "audio_diktat/Freundschaft.m4a"
+      },
+      {
+        "wort": "Gerechtigkeit",
+        "audio": "audio_diktat/Gerechtigkeit.m4a"
+      },
+      {
+        "wort": "Möglichkeit",
+        "audio": "audio_diktat/Möglichkeit.m4a"
+      },
+      {
+        "wort": "Nachbarschaft",
+        "audio": "audio_diktat/Nachbarschaft.m4a"
+      },
+      {
+        "wort": "Überraschung",
+        "audio": "audio_diktat/Überraschung.m4a"
+      },
+      {
+        "wort": "Verantwortung",
+        "audio": "audio_diktat/Verantwortung.m4a"
+      },
+      {
+        "wort": "Verständnis",
+        "audio": "audio_diktat/Verständnis.m4a"
+      },
+      {
+        "wort": "Zusammenarbeit",
+        "audio": "audio_diktat/Zusammenarbeit.m4a"
+      },
+      {
+        "wort": "beobachten",
+        "audio": "audio_diktat/beobachten.m4a"
+      },
+      {
+        "wort": "beschreiben",
+        "audio": "audio_diktat/beschreiben.m4a"
+      },
+      {
+        "wort": "entscheiden",
+        "audio": "audio_diktat/entscheiden.m4a"
+      },
+      {
+        "wort": "entwickeln",
+        "audio": "audio_diktat/entwickeln.m4a"
+      },
+      {
+        "wort": "erkennen",
+        "audio": "audio_diktat/erkennen.m4a"
+      },
+      {
+        "wort": "erzählen",
+        "audio": "audio_diktat/erzählen.m4a"
+      },
+      {
+        "wort": "gestalten",
+        "audio": "audio_diktat/gestalten.m4a"
+      },
+      {
+        "wort": "nachdenken",
+        "audio": "audio_diktat/nachdenken.m4a"
+      },
+      {
+        "wort": "unterscheiden",
+        "audio": "audio_diktat/unterscheiden.m4a"
+      },
+      {
+        "wort": "verstehen",
+        "audio": "audio_diktat/verstehen.m4a"
+      },
+      {
+        "wort": "aufmerksam",
+        "audio": "audio_diktat/aufmerksam.m4a"
+      },
+      {
+        "wort": "begeistert",
+        "audio": "audio_diktat/begeistert.m4a"
+      },
+      {
+        "wort": "eigentümlich",
+        "audio": "audio_diktat/eigentümlich.m4a"
+      },
+      {
+        "wort": "erstaunlich",
+        "audio": "audio_diktat/erstaunlich.m4a"
+      },
+      {
+        "wort": "gefährlich",
+        "audio": "audio_diktat/gefährlich.m4a"
+      },
+      {
+        "wort": "hilfsbereit",
+        "audio": "audio_diktat/hilfsbereit.m4a"
+      },
+      {
+        "wort": "nachdenklich",
+        "audio": "audio_diktat/nachdenklich.m4a"
+      },
+      {
+        "wort": "selbstständig",
+        "audio": "audio_diktat/selbstständig.m4a"
+      },
+      {
+        "wort": "verlässlich",
+        "audio": "audio_diktat/verlässlich.m4a"
+      },
+      {
+        "wort": "zuverlässig",
+        "audio": "audio_diktat/zuverlässig.m4a"
+      },
+      {
+        "wort": "aufgrund",
+        "audio": "audio_diktat/aufgrund.m4a"
+      },
+      {
+        "wort": "bezüglich",
+        "audio": "audio_diktat/bezüglich.m4a"
+      },
+      {
+        "wort": "einschließlich",
+        "audio": "audio_diktat/einschließlich.m4a"
+      },
+      {
+        "wort": "gegenüber",
+        "audio": "audio_diktat/gegenüber.m4a"
+      },
+      {
+        "wort": "hinsichtlich",
+        "audio": "audio_diktat/hinsichtlich.m4a"
+      },
+      {
+        "wort": "infolge",
+        "audio": "audio_diktat/infolge.m4a"
+      },
+      {
+        "wort": "innerhalb",
+        "audio": "audio_diktat/innerhalb.m4a"
+      },
+      {
+        "wort": "mithilfe",
+        "audio": "audio_diktat/mithilfe.m4a"
+      },
+      {
+        "wort": "oberhalb",
+        "audio": "audio_diktat/oberhalb.m4a"
+      },
+      {
+        "wort": "zufolge",
+        "audio": "audio_diktat/zufolge.m4a"
+      }
+    ],
+    "silben": []
+  }
+}
