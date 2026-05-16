@@ -508,7 +508,7 @@
         function speakCharWithKey(key) {
             window.speechSynthesis.cancel();
             const usePhoneme = document.getElementById('anlautToggle').checked;
-            const data = usePhoneme ? audioDataWord : audioData;
+            const data = usePhoneme ? audioData : audioDataWord;
             const src = data[key] || audioData[key];
             if (src) new Audio(src).play().catch(() => speakCharTTS(key));
             else speakCharTTS(key);
@@ -518,7 +518,7 @@
             window.speechSynthesis.cancel();
             const lower = char.toLowerCase();
             const usePhoneme = document.getElementById('anlautToggle').checked;
-            const data = usePhoneme ? audioDataWord : audioData;
+            const data = usePhoneme ? audioData : audioDataWord;
             if (lower === 'ch')  { playAudioSequence(['ch_ich','ch_ach']); return; }
             if (lower === 'äu')  { speakCharWithKey('eu'); return; }
             if (lower === 'ß')   { speakCharWithKey('ß'); return; }
